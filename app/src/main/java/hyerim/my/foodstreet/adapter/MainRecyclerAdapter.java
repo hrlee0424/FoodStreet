@@ -37,6 +37,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         holder.title.setText(Html.fromHtml(arrayList.get(position).title));
         holder.roadadress.setText(arrayList.get(position).address);
         holder.category.setText(arrayList.get(position).category);
+        holder.telephone.setText(arrayList.get(position).telephone);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title,roadadress,category;
+        TextView title,roadadress,category, telephone;
         View.OnClickListener holderClick;
 
         public ViewHolder(@NonNull View itemView){
@@ -54,6 +55,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             title  = itemView.findViewById(R.id.main_recyclerview_title);
             roadadress  = itemView.findViewById(R.id.main_recyclerview_roadadress);
             category  = itemView.findViewById(R.id.main_recyclerview_category);
+            telephone = itemView.findViewById(R.id.main_recyclerview_telephone);
         }
 
     }

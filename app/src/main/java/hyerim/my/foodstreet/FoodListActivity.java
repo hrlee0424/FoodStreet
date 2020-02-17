@@ -62,6 +62,9 @@ public class FoodListActivity extends AppCompatActivity {
         }
     }
 
+//1.    TODO: 그리드뷰의 아이템 각 항목을 클릭 했을 떄 해당되는 아이템 네임으로 검색어가 바뀌어 리스트뷰에 띄우기.
+//2.    TODO: 리사이클러뷰의 아이템을 클릭했을 때 액티비티 화면으로 넘겨 상세정보 및 리뷰화면 띄우기.
+//3.    TODO: 리사이클러뷰의 스크롤 가능하게.
 
     //naver 지역 검색 실행.
     private AsyncTask asyncTask = new AsyncTask() {
@@ -70,8 +73,8 @@ public class FoodListActivity extends AppCompatActivity {
         protected Object doInBackground(Object[] objects) {
             String text = "";
             try {
-                text = URLEncoder.encode("광명갈비", "UTF-8");
-                String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text ;
+                text = URLEncoder.encode("광명 일식", "UTF-8");
+                String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&start=1&display=20";
                 //+ "&start=1&display=100"
 
                 URL url = new URL(apiURL);
