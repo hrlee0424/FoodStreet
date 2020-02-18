@@ -1,89 +1,83 @@
 package hyerim.my.foodstreet;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.Object.ResponseObject;
-import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.NavHost;
+import androidx.navigation.NavHostController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import hyerim.my.foodstreet.fragment.Main2Fragment;
+import hyerim.my.foodstreet.fragment.Main3Fragment;
+import hyerim.my.foodstreet.fragment.Main4Fragment;
+import hyerim.my.foodstreet.fragment.MainFragment;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
-
 public class MainActivity extends AppCompatActivity {
+    private TextView menu_home, menu_star, menu_map, menu_my_page;
 
-    private GridView gridView;
-    public TextView gridview_item_text;
-    public ImageView gridview_item_image;
-    public String searchmenu;
+    private FragmentManager fr_mg ;
+    private FragmentTransaction fr_tr;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //***************** 메인화면 Main_gridview *****************************
-        gridview_item_image = findViewById(R.id.gridview_item_image);
-        gridview_item_text = findViewById(R.id.gridview_item_text);
+        menu_home = findViewById(R.id.menu_home);
+        menu_star = findViewById(R.id.menu_star);
+        menu_map = findViewById(R.id.menu_map);
+        menu_my_page = findViewById(R.id.menu_my_page);
 
+        //실행 초기 홈 화면 생성.
+        fr_mg = getSupportFragmentManager();
+        fr_tr = fr_mg.beginTransaction();
+        fr_tr.add(R.id.fragment_main, new MainFragment());
+        fr_tr.commit();
 
-        int image[] = {
-                R.drawable.bento,
-                R.drawable.rice_bowl,
-                R.drawable.friedchicken,
-                R.drawable.pizza_100,
-                R.drawable.hamburger_96,
-                R.drawable.noodles,
-                R.drawable.dimsum,
-                R.drawable.cafe
-        };
-
-        String text[] = {
-                "돈가스.일식",
-                "한식",
-                "치킨",
-                "피자",
-                "패스트푸드",
-                "중국집",
-                "아시안",
-                "카페"
-        };
-
-        gridView = findViewById(R.id.main_gridview);
-        GridViewAdapter gridViewAdapter = new GridViewAdapter(this,image,text);
-        gridView.setAdapter(gridViewAdapter);
-
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(),FoodListActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-        //***************** 메인화면 Main_gridview 끝*****************************
-
+        //하단 메뉴 바 클릭시 화면 전환.
+        menu_home.setOnClickListener(Click);
+        menu_star.setOnClickListener(Click);
+        menu_map.setOnClickListener(Click);
+        menu_my_page.setOnClickListener(Click);
     }
 
 
+    //메뉴 바 클릭시 실행되는 메소드.
+    private View.OnClickListener Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            fr_mg = getSupportFragmentManager();
+            fr_tr = fr_mg.beginTransaction();
+            switch (v.getId()) {
+                case R.id.menu_home:
+                    fr_tr.replace(R.id.fragment_main, new MainFragment());
+                    fr_tr.commit();
+                    break;
+                case R.id.menu_star:
+                    //                Navigation.findNavController(MainActivity.this,R.id.fragment_main).navigate(R.id.action_mainFragment_to_main2Fragment);
+                    fr_tr.replace(R.id.fragment_main, new Main2Fragment());
+                    fr_tr.commit();
+                    break;
+                case R.id.menu_map:
+                    fr_tr.replace(R.id.fragment_main, new Main3Fragment());
+                    fr_tr.commit();
+                    break;
+                case R.id.menu_my_page:
+                    fr_tr.replace(R.id.fragment_main, new Main4Fragment());
+                    fr_tr.commit();
+                    break;
+            }
+        }
+
+    };
 
 }

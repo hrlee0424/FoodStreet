@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import hyerim.my.foodstreet.Object.ResponseObject;
@@ -14,7 +13,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -29,13 +27,14 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class FoodListActivity extends AppCompatActivity {
+    private String TAG = FoodListActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerViewDecoration spaceDecoration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_recyclerview);
+        setContentView(R.layout.main_recyclerview);
 
         recyclerView = findViewById(R.id.main_recyclerview);
 
@@ -67,13 +66,13 @@ public class FoodListActivity extends AppCompatActivity {
 //3.    TODO: 리사이클러뷰의 스크롤 가능하게.
 
     //naver 지역 검색 실행.
-    private AsyncTask asyncTask = new AsyncTask() {
+    public AsyncTask asyncTask = new AsyncTask() {
         ResponseObject responseObject;
         @Override
         protected Object doInBackground(Object[] objects) {
             String text = "";
             try {
-                text = URLEncoder.encode("광명 일식", "UTF-8");
+                text = URLEncoder.encode("광명", "UTF-8");
                 String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&start=1&display=20";
                 //+ "&start=1&display=100"
 
