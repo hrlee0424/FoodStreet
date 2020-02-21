@@ -5,11 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".fragment.Main3Fragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여기는 지도"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
 
+    <fragment
+        android:id="@+id/map"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:name="com.naver.maps.map.MapFragment"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="지도가 보이니?"/>
 </FrameLayout>

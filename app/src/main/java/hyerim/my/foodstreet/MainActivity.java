@@ -21,11 +21,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.nhn.android.naverlogin.OAuthLogin;
+
 public class MainActivity extends AppCompatActivity {
     private TextView menu_home, menu_star, menu_map, menu_my_page;
-
     private FragmentManager fr_mg ;
     private FragmentTransaction fr_tr;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

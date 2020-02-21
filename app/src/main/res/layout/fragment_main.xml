@@ -11,18 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/layout"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@color/main"></androidx.appcompat.widget.Toolbar>
-    </LinearLayout>
 
     <!--  <net.daum.mf.map.api.MapView
           android:id="@+id/map_view"

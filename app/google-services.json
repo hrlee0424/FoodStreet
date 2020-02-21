@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "747041753416",
+    "firebase_url": "https://foodstreet-513c4.firebaseio.com",
+    "project_id": "foodstreet-513c4",
+    "storage_bucket": "foodstreet-513c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747041753416:android:b88b478c1ed11d8a57cb7d",
+        "android_client_info": {
+          "package_name": "hyerim.my.foodstreet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747041753416-b1lmuu5djt5sf3nvf3a9sob731n8af1t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hyerim.my.foodstreet",
+            "certificate_hash": "157291e75143565bb2d984532f49889b33a9df9f"
+          }
+        },
+        {
+          "client_id": "747041753416-kodi8lq7vbd0pfssfe1kagh8r96jg9n9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdFPCs3V5lBggGVsbjgj7Wvs0o2UwmmNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747041753416-kodi8lq7vbd0pfssfe1kagh8r96jg9n9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

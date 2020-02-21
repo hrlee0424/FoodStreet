@@ -6,4 +6,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main4_textidlogin">닉네임</string>
+    <string name="main4_textidlogout">로그인해주세요</string>
+
+    <string name="OAUTH_CLIENT_ID">sad7m2l0u2</string>
+    <string name="OAUTH_CLIENT_SECRET">EQMALjzpHRRax0t5EchQFtwms2af4WGCZHleRsKM</string>
+    <string name="OAUTH_CLIENT_NAME">FoodStreet</string>
 </resources>
