@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import hyerim.my.foodstreet.Object.ResponseObject;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
+import hyerim.my.foodstreet.fragment.MainFragment;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -30,7 +33,7 @@ public class FoodListActivity extends AppCompatActivity {
     private String TAG = FoodListActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerViewDecoration spaceDecoration;
-
+    private String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,10 @@ public class FoodListActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager
                 = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        Intent intent = getIntent();    //데이터 수신
+        name = intent.getExtras().getString("text");
+        Log.i(TAG, "onCreate: " + name);
 
         //리사이클러뷰 높이 여백 지정.
         spaceDecoration = new RecyclerViewDecoration(30);

@@ -20,9 +20,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.Format;
+
 public class MainFragment extends Fragment {
     private GridView gridView;
-    public TextView gridview_item_text;
+    public static TextView gridview_item_text;
     public ImageView gridview_item_image;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +72,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), FoodListActivity.class);
+                intent.putExtra("text",gridview_item_text.getText().toString().trim());
                 startActivity(intent);
             }
         });

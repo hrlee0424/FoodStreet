@@ -14,7 +14,9 @@ import hyerim.my.foodstreet.fragment.Main2Fragment;
 import hyerim.my.foodstreet.fragment.Main3Fragment;
 import hyerim.my.foodstreet.fragment.Main4Fragment;
 import hyerim.my.foodstreet.fragment.MainFragment;
+import hyerim.my.foodstreet.fragment.MainMypageFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         menu_home = findViewById(R.id.menu_home);
         menu_star = findViewById(R.id.menu_star);
@@ -75,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
                     fr_tr.commit();
                     break;
                 case R.id.menu_my_page:
-                    fr_tr.replace(R.id.fragment_main, new Main4Fragment());
+                    if (firebaseAuth.getCurrentUser() != null){
+                        fr_tr.replace(R.id.fragment_main, new MainMypageFragment());
+                    }else {
+                        fr_tr.replace(R.id.fragment_main, new Main4Fragment());
+                    }
                     fr_tr.commit();
                     break;
             }
