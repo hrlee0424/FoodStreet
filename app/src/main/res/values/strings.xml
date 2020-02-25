@@ -12,4 +12,15 @@
     <string name="OAUTH_CLIENT_ID">sad7m2l0u2</string>
     <string name="OAUTH_CLIENT_SECRET">EQMALjzpHRRax0t5EchQFtwms2af4WGCZHleRsKM</string>
     <string name="OAUTH_CLIENT_NAME">FoodStreet</string>
+
+    <array name="foodtext">
+        <item>한식</item>
+        <item>일식</item>
+        <item>치킨</item>
+        <item>피자</item>
+        <item>패스트푸드</item>
+        <item>중국집</item>
+        <item>아시안</item>
+        <item>카페</item>
+    </array>
 </resources>

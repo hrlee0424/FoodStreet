@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     fr_tr.commit();
                     break;
                 case R.id.menu_my_page:
-                    if (firebaseAuth.getCurrentUser() != null){
+                    if (firebaseAuth.getCurrentUser() != null){ //이전 가입한 아이디가 있으면
                         fr_tr.replace(R.id.fragment_main, new MainMypageFragment());
                     }else {
                         fr_tr.replace(R.id.fragment_main, new Main4Fragment());

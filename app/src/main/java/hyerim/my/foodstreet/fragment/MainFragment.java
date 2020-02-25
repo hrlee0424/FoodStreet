@@ -35,8 +35,8 @@ public class MainFragment extends Fragment {
         gridview_item_text = view.findViewById(R.id.gridview_item_text);
 
         int image[] = {
-                R.drawable.bento,
                 R.drawable.rice_bowl,
+                R.drawable.bento,
                 R.drawable.friedchicken,
                 R.drawable.pizza_100,
                 R.drawable.hamburger_96,
@@ -45,15 +45,8 @@ public class MainFragment extends Fragment {
                 R.drawable.cafe
         };
 
-        String text[] = {
-                "돈가스.일식",
-                "한식",
-                "치킨",
-                "피자",
-                "패스트푸드",
-                "중국집",
-                "아시안",
-                "카페"
+        String text[] = getResources().getStringArray(R.array.foodtext);{
+
         };
 
         gridView = view.findViewById(R.id.main_gridview);
@@ -72,7 +65,8 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), FoodListActivity.class);
-                intent.putExtra("text",gridview_item_text.getText().toString().trim());
+                TextView tv = view.findViewById(R.id.gridview_item_text);
+                intent.putExtra("text",tv.getText().toString().trim());
                 startActivity(intent);
             }
         });

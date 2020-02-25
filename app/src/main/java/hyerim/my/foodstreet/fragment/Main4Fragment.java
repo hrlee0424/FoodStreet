@@ -40,8 +40,6 @@ public class Main4Fragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
     }
 
     @Override

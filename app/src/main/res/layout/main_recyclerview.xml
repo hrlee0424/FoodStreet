@@ -11,9 +11,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/title_tab"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@android:color/black"
+            app:tabIndicatorColor="@android:color/black"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/frag_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+            -->
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

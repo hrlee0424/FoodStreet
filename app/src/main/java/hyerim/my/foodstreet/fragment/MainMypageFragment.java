@@ -50,6 +50,7 @@ public class MainMypageFragment extends Fragment {
         fr_tr = fr_mg.beginTransaction();
 
 
+        //마이페이지 회원 아이디 입력.
         DocumentReference docRef = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
