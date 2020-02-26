@@ -14,7 +14,9 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/title_tab"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:background="@color/titleBar"
+            app:tabMode="scrollable"
             android:textColor="@android:color/black"
             app:tabIndicatorColor="@android:color/black"/>
 

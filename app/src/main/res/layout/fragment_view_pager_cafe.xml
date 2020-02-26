@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".vpfragment.ViewPagerFragCafe">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cafe_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="cafe"
-        android:textSize="50sp"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

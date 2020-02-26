@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -72,7 +73,7 @@ public class MainMypageFragment extends Fragment {
                 firebaseAuth.signOut();
                 fr_tr.replace(R.id.fragment_main, new MainFragment());
                 fr_tr.commit();
-//                Toast.makeText(MainMypageFragment.this,"로그아웃 되었습니다.",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"로그아웃 되었습니다.",Toast.LENGTH_LONG).show();
             }
         });
 

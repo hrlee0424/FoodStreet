@@ -7,7 +7,6 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/layout"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="60dp">
@@ -15,8 +14,18 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@color/titleBar"></androidx.appcompat.widget.Toolbar>
+            android:layout_height="60dp"
+            android:background="@color/titleBar">
+
+            <TextView
+                android:id="@+id/tb_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주소"
+                android:textSize="20sp"
+                android:gravity="center"/>
+        </androidx.appcompat.widget.Toolbar>
+
     </LinearLayout>
 
     <FrameLayout

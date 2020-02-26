@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 import hyerim.my.foodstreet.Object.ResponseObject;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
 import hyerim.my.foodstreet.adapter.ViewPagerAdapter;
+import hyerim.my.foodstreet.fragment.MainFragment;
+import hyerim.my.foodstreet.vpfragment.ViewPagerFragKorean;
 
 import android.Manifest;
 import android.content.Context;
@@ -17,8 +19,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -48,6 +52,12 @@ public class FoodListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_recyclerview);
 
+        final Intent intent = getIntent();    //데이터 수신
+        final String category = intent.getStringExtra("text");
+        final int position = intent.getIntExtra("position",0);
+
+        Log.i(TAG, "onCreate: " + position);
+
         context = getApplicationContext();
         tabLayout = findViewById(R.id.title_tab);
         tabLayout.addTab(tabLayout.newTab().setCustomView(createTabView("한식")));
@@ -62,6 +72,8 @@ public class FoodListActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.frag_viewpager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(position); //그리드뷰 클릭시 넘겨준 position에 맞는 뷰페이저 설정.
+
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -72,7 +84,7 @@ public class FoodListActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+//                viewPager.setCurrentItem(position);
             }
 
             @Override
@@ -80,6 +92,8 @@ public class FoodListActivity extends AppCompatActivity {
 
             }
         });
+
+
         /*
                 recyclerView = findViewById(R.id.main_recyclerview);
 
@@ -113,6 +127,16 @@ public class FoodListActivity extends AppCompatActivity {
         */
     }
 
+//    private void gridTab(int position){
+//        switch (position){
+//            case 0:
+//                tabLayout.getSelectedTabPosition();
+//            case 1:
+//
+//
+//
+//        }
+//    }
     private View createTabView(String tabName){
         View tabView = LayoutInflater.from(context).inflate(R.layout.tab_menu,null);
         TextView tab_item = tabView.findViewById(R.id.tab_item);

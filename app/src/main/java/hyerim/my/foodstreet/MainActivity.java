@@ -1,6 +1,7 @@
 package hyerim.my.foodstreet;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,19 +19,21 @@ import hyerim.my.foodstreet.fragment.MainMypageFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.nhn.android.naverlogin.OAuthLogin;
 
 public class MainActivity extends AppCompatActivity {
     private TextView menu_home, menu_star, menu_map, menu_my_page;
     private FragmentManager fr_mg ;
     private FragmentTransaction fr_tr;
     private FirebaseAuth firebaseAuth;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         menu_home = findViewById(R.id.menu_home);
         menu_star = findViewById(R.id.menu_star);
@@ -56,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         menu_map.setOnClickListener(Click);
         menu_my_page.setOnClickListener(Click);
     }
-
 
     //메뉴 바 클릭시 실행되는 메소드.
     private View.OnClickListener Click = new View.OnClickListener() {
@@ -88,7 +92,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-
     };
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.main_menu,menu);
+//        return true;
+//    }
 }

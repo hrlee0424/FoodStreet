@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import hyerim.my.foodstreet.FoodListActivity;
 import hyerim.my.foodstreet.GridViewAdapter;
 import hyerim.my.foodstreet.R;
+import hyerim.my.foodstreet.adapter.ViewPagerAdapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import android.widget.TextView;
 import java.text.Format;
 
 public class MainFragment extends Fragment {
-    private GridView gridView;
+    public GridView gridView;
     public static TextView gridview_item_text;
     public ImageView gridview_item_image;
     @Override
@@ -66,6 +67,7 @@ public class MainFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), FoodListActivity.class);
                 TextView tv = view.findViewById(R.id.gridview_item_text);
+                intent.putExtra("position",i);
                 intent.putExtra("text",tv.getText().toString().trim());
                 startActivity(intent);
             }

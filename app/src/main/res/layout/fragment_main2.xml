@@ -6,6 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.Main2Fragment">
 
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/titleBar">
+
+            <TextView
+                android:id="@+id/tb_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="즐겨찾기"
+                android:textSize="20sp"
+                android:gravity="center"/>
+        </androidx.appcompat.widget.Toolbar>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
