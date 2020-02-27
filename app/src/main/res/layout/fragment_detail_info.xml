@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailInfo">
@@ -103,8 +104,11 @@
     <fragment
         android:id="@+id/detail_map"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:name="com.naver.maps.map.MapFragment"/>
+        android:layout_height="400dp"
+        android:name="com.naver.maps.map.MapFragment"
+        app:navermap_latitude="36.763685"
+        app:navermap_longitude="127.281796"
+        app:navermap_zoom="14"/>
 
 
 

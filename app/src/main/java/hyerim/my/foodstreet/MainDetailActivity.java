@@ -1,14 +1,18 @@
 package hyerim.my.foodstreet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -17,6 +21,7 @@ public class MainDetailActivity extends AppCompatActivity {
     private TextView dttext_info,dttext_review, detail_title;
     private FragmentManager fr_mg ;
     private FragmentTransaction fr_tr;
+    private Toolbar toolbar;
 //    private String description, tel, adress, homepage;
     private TextView info_description, info_tel, info_adress, info_homepage;
 
@@ -24,6 +29,11 @@ public class MainDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_detail);
+
+        toolbar = findViewById(R.id.detail_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         dttext_info = findViewById(R.id.dttext_info);
         dttext_review = findViewById(R.id.dttext_review);
@@ -63,6 +73,16 @@ public class MainDetailActivity extends AppCompatActivity {
         dttext_info.setOnClickListener(Click);
         dttext_review.setOnClickListener(Click);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private View.OnClickListener Click = new View.OnClickListener() {

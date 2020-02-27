@@ -1,6 +1,8 @@
 package hyerim.my.foodstreet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -21,9 +23,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
+
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -46,11 +50,15 @@ public class FoodListActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private Context context;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_recyclerview);
+        toolbar = findViewById(R.id.mainlist_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         final Intent intent = getIntent();    //데이터 수신
         final String category = intent.getStringExtra("text");
@@ -127,16 +135,16 @@ public class FoodListActivity extends AppCompatActivity {
         */
     }
 
-//    private void gridTab(int position){
-//        switch (position){
-//            case 0:
-//                tabLayout.getSelectedTabPosition();
-//            case 1:
-//
-//
-//
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private View createTabView(String tabName){
         View tabView = LayoutInflater.from(context).inflate(R.layout.tab_menu,null);
         TextView tab_item = tabView.findViewById(R.id.tab_item);

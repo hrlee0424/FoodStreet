@@ -11,14 +11,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/title_tab"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/titleBar"
-            app:tabMode="scrollable"
-            android:textColor="@android:color/black"
-            app:tabIndicatorColor="@android:color/black"/>
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/mainlist_toolbar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@color/titleBar"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/title_tab"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/titleBar"
+                app:tabMode="scrollable"
+                android:textColor="@android:color/black"
+                app:tabIndicatorColor="@android:color/black"/>
+        </LinearLayout>
+
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/frag_viewpager"
