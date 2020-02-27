@@ -17,6 +17,8 @@ public class MainDetailActivity extends AppCompatActivity {
     private TextView dttext_info,dttext_review, detail_title;
     private FragmentManager fr_mg ;
     private FragmentTransaction fr_tr;
+//    private String description, tel, adress, homepage;
+    private TextView info_description, info_tel, info_adress, info_homepage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +31,34 @@ public class MainDetailActivity extends AppCompatActivity {
 
         final Intent intent = getIntent();
         final String title = intent.getStringExtra("detail_title");
+        String description = intent.getStringExtra("info_description");
+        String tel = intent.getStringExtra("info_tel");
+        String adress = intent.getStringExtra("info_adress");
+        String homepage = intent.getStringExtra("info_homepage");
+        int mapx = intent.getIntExtra("info_mapx",0);
+        int mapy = intent.getIntExtra("info_mapy",0);
 
-        detail_title.setText(title);
-        Log.i(TAG, "onCreate: " + title);
+        Intent intent1 = new Intent(getApplicationContext(),DetailInfo.class);
+        intent1.putExtra("info_description", description);
+        intent1.putExtra("info_tel", tel);
+        intent1.putExtra("info_adress", adress);
+        intent1.putExtra("info_homepage", homepage);
+        intent1.putExtra("info_mapx", mapx);
+        intent1.putExtra("info_mapy", mapy);
+
+//        Log.i(TAG, "onCreate2: " + description);
+//        Log.i(TAG, "onCreate2: " + tel);
+//        Log.i(TAG, "onCreate2: " + adress);
+//        Log.i(TAG, "onCreate2: " + homepage);
+
 
         //실행 초기 홈 화면 생성.
         fr_mg = getSupportFragmentManager();
         fr_tr = fr_mg.beginTransaction();
         fr_tr.add(R.id.detail_frame, new DetailInfo());
         fr_tr.commit();
+
+        detail_title.setText(title);
 
         dttext_info.setOnClickListener(Click);
         dttext_review.setOnClickListener(Click);
