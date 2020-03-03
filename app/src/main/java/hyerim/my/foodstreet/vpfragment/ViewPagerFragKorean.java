@@ -85,9 +85,9 @@ public class ViewPagerFragKorean extends Fragment {
         //인터넷 권한이 있을 떄만 asyndTask 실행.
         int permissionResult= ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
         if(permissionResult == PackageManager.PERMISSION_GRANTED){  //권한이 있으면
-            new SearchTask("한식").execute();
+            new SearchTask("광명한식").execute();
         }else if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)){  //권한 요청화면을 띄워줌
-            new SearchTask("한식").execute();    //권한 허락이 되었을 때 실행
+            new SearchTask("광명한식").execute();    //권한 허락이 되었을 때 실행
         }
 
 //        inflater =(LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

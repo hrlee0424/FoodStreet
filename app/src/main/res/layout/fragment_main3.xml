@@ -35,5 +35,11 @@
         android:layout_height="500dp"
         android:name="com.naver.maps.map.MapFragment"/>
 
+    <TextView
+        android:id="@+id/maptext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="위도경도"
+        android:textSize="20dp"/>
 
 </FrameLayout>

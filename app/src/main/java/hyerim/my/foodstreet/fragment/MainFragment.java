@@ -8,9 +8,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import hyerim.my.foodstreet.FoodListActivity;
 import hyerim.my.foodstreet.GridViewAdapter;
 import hyerim.my.foodstreet.R;
+import hyerim.my.foodstreet.adapter.MainPagerAdapter;
 import hyerim.my.foodstreet.adapter.ViewPagerAdapter;
 
 import android.view.LayoutInflater;
@@ -24,16 +26,25 @@ import android.widget.TextView;
 import java.text.Format;
 
 public class MainFragment extends Fragment {
-    public GridView gridView;
-    public static TextView gridview_item_text;
-    public ImageView gridview_item_image;
+    private GridView gridView;
+    private static TextView gridview_item_text;
+    private ImageView gridview_item_image;
+    private ViewPager viewPager;
+    private MainPagerAdapter mainPagerAdapter;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         View view  = inflater.inflate(R.layout.fragment_main,null);
         gridview_item_image = view.findViewById(R.id.gridview_item_image);
         gridview_item_text = view.findViewById(R.id.gridview_item_text);
+        viewPager = view.findViewById(R.id.main_viewpager);
+        mainPagerAdapter = new MainPagerAdapter(getContext());
+        viewPager.setAdapter(mainPagerAdapter);
 
         int image[] = {
                 R.drawable.rice_bowl,

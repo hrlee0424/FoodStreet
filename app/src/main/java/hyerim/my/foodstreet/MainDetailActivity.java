@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import hyerim.my.foodstreet.fragment.DetailInfo;
+import hyerim.my.foodstreet.fragment.DetailReview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainDetailActivity extends AppCompatActivity {
     private String TAG = MainDetailActivity.class.getSimpleName();
@@ -24,6 +22,8 @@ public class MainDetailActivity extends AppCompatActivity {
     private Toolbar toolbar;
 //    private String description, tel, adress, homepage;
     private TextView info_description, info_tel, info_adress, info_homepage;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,13 @@ public class MainDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
+
+
         dttext_info = findViewById(R.id.dttext_info);
         dttext_review = findViewById(R.id.dttext_review);
         detail_title = findViewById(R.id.detail_title);
+
+
 
         final Intent intent = getIntent();
         final String title = intent.getStringExtra("detail_title");
@@ -48,7 +52,7 @@ public class MainDetailActivity extends AppCompatActivity {
         int mapx = intent.getIntExtra("info_mapx",0);
         int mapy = intent.getIntExtra("info_mapy",0);
 
-        Intent intent1 = new Intent(getApplicationContext(),DetailInfo.class);
+        Intent intent1 = new Intent(getApplicationContext(), DetailInfo.class);
         intent1.putExtra("info_description", description);
         intent1.putExtra("info_tel", tel);
         intent1.putExtra("info_adress", adress);

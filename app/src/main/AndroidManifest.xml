@@ -3,6 +3,8 @@
     package="hyerim.my.foodstreet">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_meal_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainDetailActivity"></activity>
+        <activity android:name=".DetailReviewActivity"></activity>
+        <activity android:name=".EditReviewActivity" />
+        <activity android:name=".MainDetailActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".auth.JoinActivity" />
         <activity android:name=".FoodListActivity" />

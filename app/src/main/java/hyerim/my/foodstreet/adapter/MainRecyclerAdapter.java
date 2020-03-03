@@ -1,25 +1,17 @@
 package hyerim.my.foodstreet.adapter;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.os.SystemClock;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.DetailInfo;
 import hyerim.my.foodstreet.MainDetailActivity;
 import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.R;

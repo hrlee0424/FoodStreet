@@ -17,13 +17,13 @@
             android:layout_height="60dp"
             android:background="@color/titleBar">
 
-            <TextView
-                android:id="@+id/tb_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="주소"
-                android:textSize="20sp"
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="220dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="120dp"
                 android:gravity="center"/>
+
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>

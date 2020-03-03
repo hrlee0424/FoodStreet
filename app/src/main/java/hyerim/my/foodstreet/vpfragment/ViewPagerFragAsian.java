@@ -75,9 +75,9 @@ public class ViewPagerFragAsian extends Fragment {
         //인터넷 권한이 있을 떄만 asyndTask 실행.
         int permissionResult= ContextCompat.checkSelfPermission(getContext(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
         if(permissionResult == PackageManager.PERMISSION_GRANTED){  //권한이 있으면
-            new SearchTask("아시안음식점").execute();
+            new SearchTask("아시안음식").execute();
         }else if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)){  //권한 요청화면을 띄워줌
-            new SearchTask("아시안음식점").execute();    //권한 허락이 되었을 때 실행
+            new SearchTask("아시안음식").execute();    //권한 허락이 되었을 때 실행
         }
 
     }
