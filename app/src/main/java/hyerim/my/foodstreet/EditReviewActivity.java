@@ -4,12 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.adapter.ReviewRecyclerAdapter;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.Sampler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,15 +19,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firestore.v1.Value;
 
 import java.util.HashMap;
 
 public class EditReviewActivity extends AppCompatActivity {
     private String TAG = EditReviewActivity.class.getSimpleName();
-    private Toolbar toolbar;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth firebaseAuth;
     private String name;
     private RatingBar ratingBar;
     private EditText review;
@@ -43,15 +36,15 @@ public class EditReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editreview);
 
-        toolbar = findViewById(R.id.review_toolbar);
+        Toolbar toolbar = findViewById(R.id.review_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        firebaseAuth =FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
         ratingBar = findViewById(R.id.ratingBar);
         review = findViewById(R.id.review_edit);
-        review_list = findViewById(R.id.detail_reviewlist);
+//        review_list = findViewById(R.id.detail_reviewlist);
 
         //사용자 닉네임 받아오기.
         DocumentReference nic = db.collection("users").document(firebaseAuth.getCurrentUser().getUid().toString());

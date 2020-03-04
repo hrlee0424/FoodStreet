@@ -3,49 +3,22 @@ package hyerim.my.foodstreet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-import hyerim.my.foodstreet.Object.ResponseObject;
-import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
 import hyerim.my.foodstreet.adapter.ViewPagerAdapter;
-import hyerim.my.foodstreet.fragment.MainFragment;
-import hyerim.my.foodstreet.vpfragment.ViewPagerFragKorean;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.TextView;
 
-
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
 
 public class FoodListActivity extends AppCompatActivity {
     private String TAG = FoodListActivity.class.getSimpleName();
-    private RecyclerView kor_recyclerView;
-    private RecyclerViewDecoration spaceDecoration;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
@@ -152,8 +125,6 @@ public class FoodListActivity extends AppCompatActivity {
         return tabView;
     }
 
-//1.    TODO: 그리드뷰의 아이템 각 항목을 클릭 했을 떄 해당되는 아이템 네임으로 검색어가 바뀌어 리스트뷰에 띄우기.
-//2.    TODO: 리사이클러뷰의 아이템을 클릭했을 때 액티비티 화면으로 넘겨 상세정보 및 리뷰화면 띄우기.
 //3.    TODO: 리사이클러뷰의 스크롤 가능하게.
 /*
     public class SearchTask extends AsyncTask{

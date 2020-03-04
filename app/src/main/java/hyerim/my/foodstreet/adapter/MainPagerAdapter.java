@@ -13,11 +13,10 @@ import hyerim.my.foodstreet.R;
 
 public class MainPagerAdapter extends PagerAdapter {
     private Context context;
-    private int[] images = {R.drawable.korean, R.drawable.pizza, R.drawable.coffee, R.drawable.stake};
+    private int[] images = {R.drawable.korean, R.drawable.pizza, R.drawable.coffee, R.drawable.stake}; //인디게이터에 사용할 이미지
 
     public MainPagerAdapter(Context context){
         this.context = context;
-
     }
 
     @NonNull

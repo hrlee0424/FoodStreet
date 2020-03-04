@@ -23,30 +23,27 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pm10.library.CircleIndicator;
+
 import java.text.Format;
+import java.util.Objects;
 
 public class MainFragment extends Fragment {
     private GridView gridView;
-    private static TextView gridview_item_text;
-    private ImageView gridview_item_image;
-    private ViewPager viewPager;
-    private MainPagerAdapter mainPagerAdapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         View view  = inflater.inflate(R.layout.fragment_main,null);
-        gridview_item_image = view.findViewById(R.id.gridview_item_image);
-        gridview_item_text = view.findViewById(R.id.gridview_item_text);
-        viewPager = view.findViewById(R.id.main_viewpager);
-        mainPagerAdapter = new MainPagerAdapter(getContext());
+        ViewPager viewPager = view.findViewById(R.id.main_viewpager);
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getContext());         /*ViewPager 아답터*/
         viewPager.setAdapter(mainPagerAdapter);
+        CircleIndicator circleIndicator = view.findViewById(R.id.circle_indicator);     /*ViewPager 인디게이터 캐스팅*/
+        circleIndicator.setupWithViewPager(viewPager);
 
-        int image[] = {
+        int[] image = {
                 R.drawable.rice_bowl,
                 R.drawable.bento,
                 R.drawable.friedchicken,
@@ -57,12 +54,10 @@ public class MainFragment extends Fragment {
                 R.drawable.cafe
         };
 
-        String text[] = getResources().getStringArray(R.array.foodtext);{
-
-        };
+        String[] text = getResources().getStringArray(R.array.foodtext);
 
         gridView = view.findViewById(R.id.main_gridview);
-        GridViewAdapter gridViewAdapter = new GridViewAdapter(getContext(),image,text);
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(Objects.requireNonNull(getContext()),image,text);
         gridView.setAdapter(gridViewAdapter);
         return view;
     }
@@ -83,9 +78,5 @@ public class MainFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
     }
-
-
 }

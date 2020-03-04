@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 public class GridViewAdapter extends BaseAdapter {
     private LayoutInflater inflater ;
-
-    Context context;
-    int image[];
-    String text[];
+    private Context context;
+    private int image[];
+    private String text[];
 
     public GridViewAdapter(Context context, int[] image, String[] text){
         this.context = context;

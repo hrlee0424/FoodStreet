@@ -1,54 +1,33 @@
 package hyerim.my.foodstreet;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.NavHost;
-import androidx.navigation.NavHostController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import hyerim.my.foodstreet.fragment.Main2Fragment;
 import hyerim.my.foodstreet.fragment.Main3Fragment;
 import hyerim.my.foodstreet.fragment.Main4Fragment;
 import hyerim.my.foodstreet.fragment.MainFragment;
 import hyerim.my.foodstreet.fragment.MainMypageFragment;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-    private TextView menu_home, menu_star, menu_map, menu_my_page;
+//    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+//    private static final int PERMISSIONS_REQUEST_CODE = 100;
+//    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     private FragmentManager fr_mg  = getSupportFragmentManager();
     private FragmentTransaction fr_tr;
     private FirebaseAuth firebaseAuth;
-    private Toolbar toolbar;
-    private String[] localitem;
-    private Spinner spinner;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -56,20 +35,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
-        spinner = findViewById(R.id.spinner);
-        localitem = getResources().getStringArray(R.array.local);
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] localitem = getResources().getStringArray(R.array.local);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,localitem);
         spinner.setAdapter(adapter);
 
 
-        menu_home = findViewById(R.id.menu_home);
-        menu_star = findViewById(R.id.menu_star);
-        menu_map = findViewById(R.id.menu_map);
-        menu_my_page = findViewById(R.id.menu_my_page);
+        TextView menu_home = findViewById(R.id.menu_home);
+        TextView menu_star = findViewById(R.id.menu_star);
+        TextView menu_map = findViewById(R.id.menu_map);
+        TextView menu_my_page = findViewById(R.id.menu_my_page);
 
         //실행 초기 홈 화면 생성.
         fr_tr = fr_mg.beginTransaction();

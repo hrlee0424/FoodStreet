@@ -18,8 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import hyerim.my.foodstreet.Object.ResponseObject;
 import hyerim.my.foodstreet.R;
 import hyerim.my.foodstreet.RecyclerViewDecoration;
+import hyerim.my.foodstreet.SearchTask;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,86 +76,10 @@ public class ViewPagerFragChinese extends Fragment {
         //인터넷 권한이 있을 떄만 asyndTask 실행.
         int permissionResult= ContextCompat.checkSelfPermission(getContext(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
         if(permissionResult == PackageManager.PERMISSION_GRANTED){  //권한이 있으면
-            new SearchTask("중국음식점").execute();
+            new SearchTask("중국음식점",chinese_recyclerview).execute();
         }else if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)){  //권한 요청화면을 띄워줌
-            new SearchTask("중국음식점").execute();    //권한 허락이 되었을 때 실행
+            new SearchTask("중국음식점",chinese_recyclerview).execute();    //권한 허락이 되었을 때 실행
         }
     }
 
-    public class SearchTask extends AsyncTask {
-        private final String category;
-        ResponseObject responseObject;
-        public SearchTask(String category){
-            this.category = category;
-        }
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            String text = "";
-            try {
-                text = URLEncoder.encode(category, "UTF-8");
-                String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&start=1&display=20";
-                //+ "&start=1&display=100"
-
-                URL url = new URL(apiURL);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod("GET");
-                con.setRequestProperty("X-Naver-Client-Id", getString(R.string.client_id));
-                con.setRequestProperty("X-Naver-Client-Secret", getString(R.string.client_secret));
-                // response 수신
-                int responseCode = con.getResponseCode();
-                System.out.println("responseCode=" + responseCode);
-                if (responseCode == 200) {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                    String inputLine;
-                    StringBuffer response = new StringBuffer();
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
-                    responseObject = new Gson().fromJson(response.toString(), ResponseObject.class);
-//                    Log.i(TAG, "doInBackground response : "+responseObject.lastBuildDate);
-                    System.out.println(response.toString());
-                    publishProgress(null);
-                } else {
-                    System.out.println("API 호출 에러 발생 : 에러코드=" + responseCode);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                    String inputLine;
-                    StringBuffer response = new StringBuffer();
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
-                    System.out.println(response.toString());
-                }
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            MainRecyclerAdapter mainRecyclerAdapter = new MainRecyclerAdapter(responseObject.items);
-            chinese_recyclerview.setAdapter(mainRecyclerAdapter);
-        }
-
-        @Override
-        protected void onProgressUpdate(Object[] values) {
-            super.onProgressUpdate(values);
-        }
-
-    }
 }

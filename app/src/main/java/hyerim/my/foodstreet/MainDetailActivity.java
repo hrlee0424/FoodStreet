@@ -16,32 +16,22 @@ import android.widget.TextView;
 
 public class MainDetailActivity extends AppCompatActivity {
     private String TAG = MainDetailActivity.class.getSimpleName();
-    private TextView dttext_info,dttext_review, detail_title;
     private FragmentManager fr_mg ;
     private FragmentTransaction fr_tr;
-    private Toolbar toolbar;
-//    private String description, tel, adress, homepage;
-    private TextView info_description, info_tel, info_adress, info_homepage;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_detail);
 
-        toolbar = findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
-
-
-        dttext_info = findViewById(R.id.dttext_info);
-        dttext_review = findViewById(R.id.dttext_review);
-        detail_title = findViewById(R.id.detail_title);
-
-
+        TextView dttext_info = findViewById(R.id.dttext_info);
+        TextView dttext_review = findViewById(R.id.dttext_review);
+        TextView detail_title = findViewById(R.id.detail_title);
 
         final Intent intent = getIntent();
         final String title = intent.getStringExtra("detail_title");
@@ -59,12 +49,6 @@ public class MainDetailActivity extends AppCompatActivity {
         intent1.putExtra("info_homepage", homepage);
         intent1.putExtra("info_mapx", mapx);
         intent1.putExtra("info_mapy", mapy);
-
-//        Log.i(TAG, "onCreate2: " + description);
-//        Log.i(TAG, "onCreate2: " + tel);
-//        Log.i(TAG, "onCreate2: " + adress);
-//        Log.i(TAG, "onCreate2: " + homepage);
-
 
         //실행 초기 홈 화면 생성.
         fr_mg = getSupportFragmentManager();

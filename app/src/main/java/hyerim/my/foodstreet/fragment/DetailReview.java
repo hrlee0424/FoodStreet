@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +19,9 @@ import android.provider.DocumentsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -54,6 +57,7 @@ public class DetailReview extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_detail_review, container, false);
     }
 
@@ -62,7 +66,7 @@ public class DetailReview extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btn_review = view.findViewById(R.id.btn_review);
         review_list = view.findViewById(R.id.detail_reviewlist);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         review_list.setLayoutManager(linearLayoutManager);
 
@@ -93,12 +97,19 @@ public class DetailReview extends Fragment {
             }
         });
 
-//        DocumentReference documentReference =db.collection()
                 btn_review.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent2 = new Intent(getActivity().getApplicationContext(), EditReviewActivity.class);
-                        startActivity(intent2);
+                        if (firebaseAuth.getCurrentUser() == null){
+                            Toast.makeText(requireContext(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+//                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                            fragmentManager.beginTransaction().remove(DetailReview.this).commit();
+//                            Intent intent = new Intent(getActivity(), MainMypageFragment.class);
+//                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(getActivity(), EditReviewActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 });
     }
