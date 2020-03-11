@@ -1,35 +1,33 @@
 package hyerim.my.foodstreet.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-import hyerim.my.foodstreet.FoodListActivity;
-import hyerim.my.foodstreet.GridViewAdapter;
+import hyerim.my.foodstreet.activity.FoodListActivity;
+import hyerim.my.foodstreet.adapter.GridViewAdapter;
+import hyerim.my.foodstreet.activity.MainActivity;
 import hyerim.my.foodstreet.R;
 import hyerim.my.foodstreet.adapter.MainPagerAdapter;
-import hyerim.my.foodstreet.adapter.ViewPagerAdapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pm10.library.CircleIndicator;
 
-import java.text.Format;
 import java.util.Objects;
 
 public class MainFragment extends Fragment {
+    private String TAG = MainFragment.class.getSimpleName();
     private GridView gridView;
+    private String local;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +48,6 @@ public class MainFragment extends Fragment {
                 R.drawable.pizza_100,
                 R.drawable.hamburger_96,
                 R.drawable.noodles,
-                R.drawable.dimsum,
                 R.drawable.cafe
         };
 
@@ -68,6 +65,18 @@ public class MainFragment extends Fragment {
         //***************** 메인화면 Main_gridview *****************************
         super.onViewCreated(view, savedInstanceState);
 
+        MainActivity activity = (MainActivity)getActivity();
+        activity.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                local = adapterView.getItemAtPosition(i).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -75,6 +84,7 @@ public class MainFragment extends Fragment {
                 TextView tv = view.findViewById(R.id.gridview_item_text);
                 intent.putExtra("position",i);
                 intent.putExtra("text",tv.getText().toString().trim());
+                intent.putExtra("local", local);
                 startActivity(intent);
             }
         });

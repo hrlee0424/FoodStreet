@@ -12,7 +12,8 @@
         android:textSize="20sp"
         android:gravity="center"/>
 
-    <TextView
+    <!--
+       <TextView
         android:id="@+id/dttext_review"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -20,5 +21,7 @@
         android:text="리뷰"
         android:textSize="20sp"
         android:gravity="center"/>
+    -->
+
 
 </LinearLayout>

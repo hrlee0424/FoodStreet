@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="sample title"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/main_recyclerview_telephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:text="sample telephone"/>
 
 
@@ -31,14 +31,14 @@
         android:id="@+id/main_recyclerview_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="sample category" />
 
     <TextView
         android:id="@+id/main_recyclerview_roadadress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="sample roadAdress"/>
 
 

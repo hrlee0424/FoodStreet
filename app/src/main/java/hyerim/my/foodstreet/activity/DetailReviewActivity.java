@@ -1,6 +1,7 @@
-package hyerim.my.foodstreet;
+package hyerim.my.foodstreet.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import hyerim.my.foodstreet.R;
 
 import android.os.Bundle;
 

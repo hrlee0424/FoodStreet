@@ -11,16 +11,18 @@
 
         <TextView
             android:id="@+id/main2_recyclerview_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="sample title"
             android:layout_marginLeft="10dp"
             android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/main2_recyclerview_telephone"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="30dp"
             android:text="sample telephone"/>
 
@@ -40,5 +42,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="sample roadAdress"/>
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="즐겨찾기 해제"
+        android:textSize="10sp"
+        android:layout_gravity="end" />
 
 </LinearLayout>

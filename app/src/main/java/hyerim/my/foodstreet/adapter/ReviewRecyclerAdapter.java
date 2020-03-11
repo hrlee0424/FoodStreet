@@ -19,7 +19,7 @@ public class ReviewRecyclerAdapter extends RecyclerView.Adapter<ReviewRecyclerAd
     private ArrayList<String> reviewid = new ArrayList<>();
     private ArrayList<Float> reviewrating = new ArrayList<>();
 //    private ArrayList<String> reviewlist = new ArrayList<>();
-    private Context context;
+    public Context context;
 
     @NonNull
     @Override
@@ -48,17 +48,9 @@ public class ReviewRecyclerAdapter extends RecyclerView.Adapter<ReviewRecyclerAd
         RatingBar ratingBar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-
             textId = itemView.findViewById(R.id.reviewlist_userid);
             eidttext = itemView.findViewById(R.id.reviewlist_text);
             ratingBar = itemView.findViewById(R.id.reviewlist_star);
-
-
         }
-    }
-
-    public class Review{
-
     }
 }

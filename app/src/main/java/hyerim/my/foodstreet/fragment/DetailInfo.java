@@ -4,20 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import hyerim.my.foodstreet.GeoTransPoint;
-import hyerim.my.foodstreet.GeoTrans;
+import hyerim.my.foodstreet.Object.ItemObject;
+import hyerim.my.foodstreet.util.GeoTransPoint;
+import hyerim.my.foodstreet.util.GeoTrans;
 import hyerim.my.foodstreet.R;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.GeoPoint;
+import com.google.gson.Gson;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapFragment;
@@ -25,16 +24,16 @@ import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
-import com.naver.maps.map.overlay.OverlayImage;
 
 
 public class DetailInfo extends Fragment implements OnMapReadyCallback {
     private String TAG = DetailInfo.class.getSimpleName();
     private TextView info_description, info_tel, info_adress, info_homepage;
-    private int mapx,mapy;
     private MapView mapView;
     private GeoTransPoint katec_pt, out_pt;
     private FragmentManager fm ;
+    private ItemObject itemObject;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,19 +63,13 @@ public class DetailInfo extends Fragment implements OnMapReadyCallback {
         info_adress = view.findViewById(R.id.info_adress);
         info_homepage = view.findViewById(R.id.info_homepage);
 
-        Intent intent1 = getActivity().getIntent();
-///       String title = intent.getStringExtra("detail_title");
-        String description = intent1.getStringExtra("info_description");
-        String tel = intent1.getStringExtra("info_tel");
-        String adress = intent1.getStringExtra("info_adress");
-        String homepage = intent1.getStringExtra("info_homepage");
-        mapx = intent1.getIntExtra("info_mapx",0);
-        mapy = intent1.getIntExtra("info_mapy",0);
+        Intent intent = getActivity().getIntent();
+        itemObject = new Gson().fromJson(intent.getStringExtra("info"), ItemObject.class);
 
-        info_description.setText(description);
-        info_tel.setText(tel);
-        info_adress.setText(adress);
-        info_homepage.setText(homepage);
+        info_description.setText(itemObject.description);
+        info_tel.setText(itemObject.telephone);
+        info_adress.setText(itemObject.roadAddress);
+        info_homepage.setText(itemObject.link);
 
         return view;
     }
@@ -85,7 +78,7 @@ public class DetailInfo extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         Marker marker = new Marker();
-        katec_pt = new GeoTransPoint(mapx,mapy);
+        katec_pt = new GeoTransPoint(itemObject.mapx,itemObject.mapy);
 //        System.out.println("katec : xKATEC=" + katec_pt.getX() + ", yKATEC=" + katec_pt.getY());
         out_pt = GeoTrans.convert(GeoTrans.KATEC, GeoTrans.GEO, katec_pt);
 //        System.out.println("geo out : xGeo=" + out_pt.getX() + ", yGeo=" + out_pt.getY());

@@ -1,13 +1,10 @@
 package hyerim.my.foodstreet.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import hyerim.my.foodstreet.MainActivity;
 import hyerim.my.foodstreet.R;
 
 import android.view.LayoutInflater;

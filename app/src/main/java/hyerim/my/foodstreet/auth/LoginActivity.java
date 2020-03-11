@@ -2,7 +2,7 @@ package hyerim.my.foodstreet.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import hyerim.my.foodstreet.MainActivity;
+import hyerim.my.foodstreet.activity.MainActivity;
 import hyerim.my.foodstreet.R;
 
 import android.content.Intent;
@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.regex.Pattern;
 

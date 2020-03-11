@@ -1,56 +1,27 @@
 package hyerim.my.foodstreet.vpfragment;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.MainDetailActivity;
-import hyerim.my.foodstreet.Object.ResponseObject;
+import hyerim.my.foodstreet.activity.FoodListActivity;
 import hyerim.my.foodstreet.R;
-import hyerim.my.foodstreet.RecyclerViewDecoration;
-import hyerim.my.foodstreet.SearchTask;
-import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import hyerim.my.foodstreet.util.RecyclerViewDecoration;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.firebase.auth.UserInfo;
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
 
 
 public class ViewPagerFragAsian extends Fragment {
     private String TAG = ViewPagerFragAsian.class.getSimpleName();
     private RecyclerViewDecoration spaceDecoration;
     private RecyclerView asian_recyclerview;
+    private String localRead;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +33,8 @@ public class ViewPagerFragAsian extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FoodListActivity activity = (FoodListActivity)getActivity();
+        localRead = activity.local;
 
         asian_recyclerview = view.findViewById(R.id.asian_recyclerview);
 
@@ -79,13 +52,12 @@ public class ViewPagerFragAsian extends Fragment {
         asian_recyclerview.addItemDecoration(dividerItemDecoration);
 
         //인터넷 권한이 있을 떄만 asyndTask 실행.
-        int permissionResult = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
-        if (permissionResult == PackageManager.PERMISSION_GRANTED) {  //권한이 있으면
-            new SearchTask("아시안음식", asian_recyclerview).execute();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)) {  //권한 요청화면을 띄워줌
-            new SearchTask("아시안음식", asian_recyclerview).execute();    //권한 허락이 되었을 때 실행
-        }
-
+//        int permissionResult = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
+//        if (permissionResult == PackageManager.PERMISSION_GRANTED) {  //권한이 있으면
+//            new SearchTask(localRead + "태국음식점", asian_recyclerview).execute();
+//        } else if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)) {  //권한 요청화면을 띄워줌
+//            new SearchTask(localRead + "태국음식점", asian_recyclerview).execute();    //권한 허락이 되었을 때 실행
+//        }
     }
 
 //    public class SearchTask extends AsyncTask {

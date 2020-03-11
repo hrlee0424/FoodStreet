@@ -1,4 +1,4 @@
-package hyerim.my.foodstreet;
+package hyerim.my.foodstreet.util;
 
 import android.graphics.Rect;
 import android.view.View;

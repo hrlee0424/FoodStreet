@@ -1,4 +1,4 @@
-package hyerim.my.foodstreet;
+package hyerim.my.foodstreet.util;
 
 public class GeoTrans {
 

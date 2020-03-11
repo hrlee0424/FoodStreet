@@ -27,11 +27,10 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여기는 즐겨찾기"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmarklist"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:layout_marginTop="60dp" />
 
 </FrameLayout>

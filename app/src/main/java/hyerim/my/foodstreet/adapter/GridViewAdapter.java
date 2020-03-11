@@ -1,4 +1,4 @@
-package hyerim.my.foodstreet;
+package hyerim.my.foodstreet.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import hyerim.my.foodstreet.R;
 
 public class GridViewAdapter extends BaseAdapter {
     private LayoutInflater inflater ;

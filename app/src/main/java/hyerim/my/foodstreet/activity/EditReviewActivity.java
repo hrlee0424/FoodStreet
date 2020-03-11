@@ -1,9 +1,10 @@
-package hyerim.my.foodstreet;
+package hyerim.my.foodstreet.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+import hyerim.my.foodstreet.R;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +28,7 @@ public class EditReviewActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String name;
     private RatingBar ratingBar;
+    private String rating;
     private EditText review;
     private HashMap<String,Object> datamap = new HashMap<>();
     private RecyclerView review_list;
@@ -46,6 +48,12 @@ public class EditReviewActivity extends AppCompatActivity {
         review = findViewById(R.id.review_edit);
 //        review_list = findViewById(R.id.detail_reviewlist);
 
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                rating = ratingBar.toString();
+            }
+        });
         //사용자 닉네임 받아오기.
         DocumentReference nic = db.collection("users").document(firebaseAuth.getCurrentUser().getUid().toString());
         nic.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -56,7 +64,6 @@ public class EditReviewActivity extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

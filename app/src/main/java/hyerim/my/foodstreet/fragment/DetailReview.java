@@ -6,43 +6,33 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.EditReviewActivity;
+import hyerim.my.foodstreet.activity.EditReviewActivity;
 import hyerim.my.foodstreet.R;
-import hyerim.my.foodstreet.RecyclerViewDecoration;
+import hyerim.my.foodstreet.util.RecyclerViewDecoration;
 import hyerim.my.foodstreet.adapter.ReviewRecyclerAdapter;
 
-import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.model.Document;
 
 import java.util.ArrayList;
 
 
 public class DetailReview extends Fragment {
+    private String TAG = DetailReview.class.getSimpleName();
     private TextView btn_review;
     private RecyclerView review_list;
     private RecyclerViewDecoration spaceDecoration;
@@ -67,7 +57,7 @@ public class DetailReview extends Fragment {
         btn_review = view.findViewById(R.id.btn_review);
         review_list = view.findViewById(R.id.detail_reviewlist);
         firebaseAuth = FirebaseAuth.getInstance();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         review_list.setLayoutManager(linearLayoutManager);
 
         //리사이클러뷰 높이 여백 지정.
@@ -79,23 +69,28 @@ public class DetailReview extends Fragment {
                 new DividerItemDecoration(review_list.getContext(),new LinearLayoutManager(getContext()).getOrientation());
         review_list.addItemDecoration(dividerItemDecoration);
 
-        ReviewRecyclerAdapter reviewRecyclerAdapter = new ReviewRecyclerAdapter();
+        final ReviewRecyclerAdapter reviewRecyclerAdapter = new ReviewRecyclerAdapter();
         review_list.setAdapter(reviewRecyclerAdapter);
 
+        db.collection("reviews").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (QueryDocumentSnapshot document : task.getResult()){
+                                Log.i(TAG, "onComplete1: " + document.getData());
+//                                reviewrating.add(Float.valueOf(document.get("rating").toString()));
+                                reviewid.add(document.get("name").toString());
+                                reviewtext.add(document.get("review").toString());
+                                Log.i(TAG, "onComplete: " + document.getData());
+                            }
+                            reviewRecyclerAdapter.notifyDataSetChanged();
+                        }else{
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("name");
-        databaseReference.child("name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
                 btn_review.setOnClickListener(new View.OnClickListener() {
                     @Override

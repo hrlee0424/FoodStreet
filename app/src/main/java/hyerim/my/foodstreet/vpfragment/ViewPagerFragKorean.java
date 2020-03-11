@@ -2,74 +2,60 @@ package hyerim.my.foodstreet.vpfragment;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.NestedScrollingChild;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.Object.ResponseObject;
+import hyerim.my.foodstreet.activity.FoodListActivity;
+import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.R;
-import hyerim.my.foodstreet.RecyclerViewDecoration;
-import hyerim.my.foodstreet.SearchTask;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import hyerim.my.foodstreet.util.RecyclerViewDecoration;
+import hyerim.my.foodstreet.asynctask.SearchTask;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
 public class ViewPagerFragKorean extends Fragment {
+    private String TAG = ViewPagerFragKorean.class.getSimpleName();
     private ArrayList<ItemObject> list;
-    private RecyclerView kor_recyclerview;
-    private RecyclerViewDecoration spaceDecoration;
     private View footerView;
     private LayoutInflater inflater;
     private int start = 1;
     private int display = 20;
     private ProgressDialog dialog;
-
+    private String localRead;
+    public boolean listnofi;
+    private int page=1;
+    private RecyclerView kor_recyclerview;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_view_pager_korean, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FoodListActivity activity = (FoodListActivity)getActivity();
+        localRead = activity.local;
+
+        list = new ArrayList<ItemObject>();
+
         kor_recyclerview = view.findViewById(R.id.kor_recyclerview);
 
 //        dialog = new ProgressDialog(getContext());
@@ -77,10 +63,12 @@ public class ViewPagerFragKorean extends Fragment {
         // Inflate the layout for this fragment
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         kor_recyclerview.setLayoutManager(linearLayoutManager);
-
+//        kor_recyclerview.setOnScrollListener(scrollListener);
         //리사이클러뷰 높이 여백 지정.
-        spaceDecoration = new RecyclerViewDecoration(30);
+        RecyclerViewDecoration spaceDecoration = new RecyclerViewDecoration(30);
         kor_recyclerview.addItemDecoration(spaceDecoration);
+
+        kor_recyclerview.setOverScrollMode(view.OVER_SCROLL_NEVER);
 
         //리사이클러뷰 구분선 추가.
         DividerItemDecoration dividerItemDecoration =
@@ -90,9 +78,44 @@ public class ViewPagerFragKorean extends Fragment {
         //인터넷 권한이 있을 떄만 asyndTask 실행.
         int permissionResult = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
         if (permissionResult == PackageManager.PERMISSION_GRANTED) {  //권한이 있으면
-            new SearchTask("광명한식",kor_recyclerview).execute();
+            new SearchTask(localRead+"한식집",kor_recyclerview, page).execute();
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)) {  //권한 요청화면을 띄워줌
-            new SearchTask("광명한식",kor_recyclerview).execute();    //권한 허락이 되었을 때 실행
+            new SearchTask(localRead+"한식집",kor_recyclerview, page).execute();    //권한 허락이 되었을 때 실행
         }
+
+        kor_recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!kor_recyclerview.canScrollVertically(1)){
+                        page += 1;
+                        new SearchTask(localRead+"한식집",kor_recyclerview, page).execute();
+                    }
+                }
+        });
     }
+
+//    private AbsListView.OnScrollListener scrollListener = new AbsListView.OnScrollListener() {
+//        @Override
+//        public void onScrollStateChanged(AbsListView absListView, int i) {
+//
+//        }
+//
+//        @Override
+//        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+//            int count = i - i1;
+//            if (i >= count && i2 != 0 && listnofi == false){
+//                listnofi = true;
+//                if (start < 1000 - 20 && list.size() >= 20){
+//                    if (start >= list.size()){
+//                        start = 1000 - 20;
+//                    }
+//                    start += 20;
+//                    new SearchTask(localRead + "한식집",kor_recyclerview,start).execute();
+//                }
+//            }else {
+//                Toast.makeText(getContext(),"더 불러올 내용이 없습니다.",Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    };
 }

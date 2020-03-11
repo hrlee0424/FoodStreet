@@ -44,11 +44,11 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 ViewPagerFragChinese viewPagerFragChinese = new ViewPagerFragChinese();
                 return viewPagerFragChinese;
             case 6:
-                ViewPagerFragAsian viewPagerFragAsian = new ViewPagerFragAsian();
-                return viewPagerFragAsian;
-            case 7:
                 ViewPagerFragCafe viewPagerFragCafe = new ViewPagerFragCafe();
                 return viewPagerFragCafe;
+//            case 7:
+//                ViewPagerFragCafe viewPagerFragCafe = new ViewPagerFragCafe();
+//                return viewPagerFragCafe;
                 default:
                     return null;
         }
