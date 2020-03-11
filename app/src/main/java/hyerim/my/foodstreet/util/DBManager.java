@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.Html;
-import android.util.Log;
-
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
@@ -47,26 +43,12 @@ public class DBManager extends SQLiteOpenHelper {
         contentValues.put("mapy",itemObject.mapy);
 
         long ret = getWritableDatabase().insert("itemtable",null,contentValues);
-//        Log.i(TAG, "insertItem: "+ ret+" | " + new Gson().toJson(contentValues));
         return ret;
     }
 
     public long deleteItem(String title){
        return getWritableDatabase().delete("itemtable","title=?",new String[]{title});
     }
-
-//    public long readItem(ItemObject itemObject){
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.get("title");
-//        contentValues.get("link");
-//        contentValues.get("telephone");
-//        contentValues.get("roadAddress");
-//        contentValues.get("category");
-//        contentValues.get("mapx");
-//        contentValues.get("mapy");
-//
-//        long ret = getReadableDatabase().
-//    }
 
     public long updateItem(ItemObject itemObject){
         ContentValues contentValues = new ContentValues();
@@ -79,7 +61,6 @@ public class DBManager extends SQLiteOpenHelper {
         contentValues.put("mapy",itemObject.mapy);
 
         long ret = getWritableDatabase().update("itemtable",contentValues, "link=? or title=?", new String[]{itemObject.link, itemObject.title});
-//        Log.i(TAG, "insertItem: "+ ret+" | " + new Gson().toJson(contentValues));
         return ret;
     }
 

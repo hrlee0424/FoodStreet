@@ -4,25 +4,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.nhn.android.idp.common.util.HttpConnectionUtil;
-
-import org.xmlpull.v1.XmlPullParser;
-
 import java.io.IOException;
-import java.net.HttpURLConnection;
 
 import androidx.recyclerview.widget.RecyclerView;
-import hyerim.my.foodstreet.MyApplication;
-import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.Object.ResponseObject;
-import hyerim.my.foodstreet.activity.MainActivity;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class SearchTask extends AsyncTask {
     private String TAG = SearchTask.class.getSimpleName();
@@ -33,13 +22,11 @@ public class SearchTask extends AsyncTask {
     public boolean listnofi;
     public int startpage;
     public MainRecyclerAdapter mainRecyclerAdapter;
-    private ItemObject itemObject;
 
     public SearchTask(String category, RecyclerView recyclerView, int page) {
         this.category = category;
         this.recyclerview = recyclerView;
         this.startpage = page;
-//        this.listnofi = listnofi;
     }
 
     @Override
@@ -83,19 +70,13 @@ public class SearchTask extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-//            Log.i(TAG, "onPostExecute: " + );
         if (mainRecyclerAdapter == null){
             mainRecyclerAdapter = new MainRecyclerAdapter(responseObject.items);
             mainRecyclerAdapter = new MainRecyclerAdapter(responseObject.items);
       recyclerview.setAdapter(mainRecyclerAdapter);
         }
         mainRecyclerAdapter.notifyDataSetChanged();
-
-//                recyclerview.invalidate();
         listnofi = false;
-        Log.i(TAG, "onPostExecute: " + listnofi);
-//        recyclerview.getAdapter().notifyDataSetChanged();
     }
-
 }
 

@@ -25,12 +25,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     private String TAG = MainRecyclerAdapter.class.getSimpleName();
     public ArrayList<ItemObject> arrayList;
     private Context context;
-    public TextView detail_title,info_description,info_adress,info_tel,info_homepage;
 
     public MainRecyclerAdapter(ArrayList<ItemObject> itemObjects) {
         arrayList = itemObjects;
-//        this.context = context;
-
     }
 
 
@@ -50,8 +47,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         holder.roadadress.setText(arrayList.get(position).roadAddress);
         holder.category.setText(arrayList.get(position).category);
         holder.telephone.setText(arrayList.get(position).telephone);
-
-//        holder.adress = arrayList.get(position).address;
         holder.homepage = arrayList.get(position).link;
         holder.description = arrayList.get(position).description;
         holder.mapx = arrayList.get(position).mapx;

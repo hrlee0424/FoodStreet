@@ -10,7 +10,6 @@ import hyerim.my.foodstreet.adapter.ViewPagerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,14 +23,13 @@ public class FoodListActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private Context context;
-    private Toolbar toolbar;
     public String local = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_recyclerview);
-        toolbar = findViewById(R.id.mainlist_toolbar);
+        Toolbar toolbar = findViewById(R.id.mainlist_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
@@ -39,9 +37,9 @@ public class FoodListActivity extends AppCompatActivity {
         final Intent intent = getIntent();    //데이터 수신
         final String category = intent.getStringExtra("text");
         final int position = intent.getIntExtra("position",0);
-        local = intent.getStringExtra("local");
 
-        Log.i(TAG, "onCreate: " + local);
+        Intent intent1 = getIntent();
+        local = intent1.getStringExtra("local");
 
         context = getApplicationContext();
         tabLayout = findViewById(R.id.title_tab);

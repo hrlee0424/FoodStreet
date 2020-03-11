@@ -27,7 +27,6 @@ import java.util.ArrayList;
 
 
 public class Main2Fragment extends Fragment {
-    private String TAG = Main2Fragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private DBAdapter dbAdapter;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

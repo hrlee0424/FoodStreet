@@ -17,6 +17,7 @@ import hyerim.my.foodstreet.Object.ResponseObject;
 import hyerim.my.foodstreet.activity.FoodListActivity;
 import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.R;
+import hyerim.my.foodstreet.activity.MainActivity;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
 import hyerim.my.foodstreet.util.RecyclerViewDecoration;
 import hyerim.my.foodstreet.asynctask.SearchTask;
@@ -51,19 +52,15 @@ public class ViewPagerFragKorean extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FoodListActivity activity = (FoodListActivity)getActivity();
-        localRead = activity.local;
-
-        list = new ArrayList<ItemObject>();
+        FoodListActivity foodListActivity = (FoodListActivity)getActivity();
+        localRead = foodListActivity.local;
 
         kor_recyclerview = view.findViewById(R.id.kor_recyclerview);
 
-//        dialog = new ProgressDialog(getContext());
-//        dialog.setMessage("loading..");
         // Inflate the layout for this fragment
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         kor_recyclerview.setLayoutManager(linearLayoutManager);
-//        kor_recyclerview.setOnScrollListener(scrollListener);
+
         //리사이클러뷰 높이 여백 지정.
         RecyclerViewDecoration spaceDecoration = new RecyclerViewDecoration(30);
         kor_recyclerview.addItemDecoration(spaceDecoration);
@@ -94,28 +91,4 @@ public class ViewPagerFragKorean extends Fragment {
                 }
         });
     }
-
-//    private AbsListView.OnScrollListener scrollListener = new AbsListView.OnScrollListener() {
-//        @Override
-//        public void onScrollStateChanged(AbsListView absListView, int i) {
-//
-//        }
-//
-//        @Override
-//        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-//            int count = i - i1;
-//            if (i >= count && i2 != 0 && listnofi == false){
-//                listnofi = true;
-//                if (start < 1000 - 20 && list.size() >= 20){
-//                    if (start >= list.size()){
-//                        start = 1000 - 20;
-//                    }
-//                    start += 20;
-//                    new SearchTask(localRead + "한식집",kor_recyclerview,start).execute();
-//                }
-//            }else {
-//                Toast.makeText(getContext(),"더 불러올 내용이 없습니다.",Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    };
 }

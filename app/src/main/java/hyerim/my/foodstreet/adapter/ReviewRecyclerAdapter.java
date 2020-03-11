@@ -18,7 +18,6 @@ public class ReviewRecyclerAdapter extends RecyclerView.Adapter<ReviewRecyclerAd
     private ArrayList<String> reviewtext = new ArrayList<>();
     private ArrayList<String> reviewid = new ArrayList<>();
     private ArrayList<Float> reviewrating = new ArrayList<>();
-//    private ArrayList<String> reviewlist = new ArrayList<>();
     public Context context;
 
     @NonNull

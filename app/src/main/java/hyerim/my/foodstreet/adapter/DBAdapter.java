@@ -50,8 +50,6 @@ public class DBAdapter extends RecyclerView.Adapter<DBAdapter.ViewHolder> {
         holder.roadadress.setText(itemObjects.get(position).roadAddress);
         holder.category.setText(itemObjects.get(position).category);
         holder.telephone.setText(itemObjects.get(position).telephone);
-//        ItemObject itemObject = itemObjects.get(position);
-//        holder.adress = arrayList.get(position).address;
         holder.homepage = itemObjects.get(position).link;
         holder.description = itemObjects.get(position).description;
         holder.mapx = itemObjects.get(position).mapx;

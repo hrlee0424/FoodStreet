@@ -14,6 +14,7 @@ import hyerim.my.foodstreet.fragment.MainFragment;
 import hyerim.my.foodstreet.fragment.MainMypageFragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -24,16 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
-//    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-//    private static final int PERMISSIONS_REQUEST_CODE = 100;
-//    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     private FragmentManager fr_mg  = getSupportFragmentManager();
     private FragmentTransaction fr_tr;
     private FirebaseAuth firebaseAuth;
     public Spinner spinner;
-    public String local = "";
-    public String test = "";
-    public String locationValue = "";
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
         spinner = findViewById(R.id.spinner);
         String[] localitem = getResources().getStringArray(R.array.local);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,localitem);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, localitem);
         spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+
+        Log.i(TAG, "onCreate: MainActivity" + spinner.getSelectedItem().toString());
 
         TextView menu_home = findViewById(R.id.menu_home);
         TextView menu_star = findViewById(R.id.menu_star);

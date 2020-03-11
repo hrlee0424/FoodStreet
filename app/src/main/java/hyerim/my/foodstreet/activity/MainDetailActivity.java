@@ -27,7 +27,6 @@ public class MainDetailActivity extends AppCompatActivity {
     private String TAG = MainDetailActivity.class.getSimpleName();
     private FragmentManager fr_mg ;
     private FragmentTransaction fr_tr;
-    private Button addfavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,33 +39,15 @@ public class MainDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         TextView dttext_info = findViewById(R.id.dttext_info);
-//        TextView dttext_review = findViewById(R.id.dttext_review);
         TextView detail_title = findViewById(R.id.detail_title);
 
-        addfavorite = findViewById(R.id.btn_bookmark);
-
-//        Intent intent = getIntent();
-//        String title = intent.getStringExtra("title");
-//        String roadadress = intent.getStringExtra("roadadress");
-//        String telephone = intent.getStringExtra("telephone");
-//        String homepage = intent.getStringExtra("homepage");
-//        String description = intent.getStringExtra("description");
-//        String mapx = intent.getStringExtra("mapx");
-//        String mapy = intent.getStringExtra("mapy");
+        Button addfavorite = findViewById(R.id.btn_bookmark);
 
         final Intent intent = getIntent();
         final ItemObject item = new Gson().fromJson(intent.getStringExtra("info"), ItemObject.class);
 
         Intent intent1 = new Intent(getApplicationContext(), DetailInfo.class);
         intent1.putExtra("info", new Gson().toJson(item));
-
-//        intent.putExtra("title",title);
-//        intent.putExtra("roadadress",roadadress);
-//        intent.putExtra("telephone",telephone);
-//        intent.putExtra("homepage",homepage);
-//        intent.putExtra("description",description);
-//        intent.putExtra("mapx",mapx);
-//        intent.putExtra("mapy",mapy);
 
         //실행 초기 홈 화면 생성.
         fr_mg = getSupportFragmentManager();
@@ -87,7 +68,6 @@ public class MainDetailActivity extends AppCompatActivity {
             public void onClick(View view1) {
                     MyApplication.getInstance().dbManager.insertItem(item);
                 Toast.makeText(MainDetailActivity.this, "즐겨찾기에 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "onClick: " + "파일저장");
             }
         });
     }

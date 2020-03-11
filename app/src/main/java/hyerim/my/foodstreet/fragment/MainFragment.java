@@ -13,6 +13,7 @@ import hyerim.my.foodstreet.activity.MainActivity;
 import hyerim.my.foodstreet.R;
 import hyerim.my.foodstreet.adapter.MainPagerAdapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class MainFragment extends Fragment {
     private String TAG = MainFragment.class.getSimpleName();
     private GridView gridView;
     private String local;
-
+    public MainActivity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,6 +57,10 @@ public class MainFragment extends Fragment {
         gridView = view.findViewById(R.id.main_gridview);
         GridViewAdapter gridViewAdapter = new GridViewAdapter(Objects.requireNonNull(getContext()),image,text);
         gridView.setAdapter(gridViewAdapter);
+
+        activity = (MainActivity)getActivity();
+        local = activity.spinner.getSelectedItem().toString(); //스피너 초기값 받아오기
+
         return view;
     }
 
@@ -64,16 +69,13 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //***************** 메인화면 Main_gridview *****************************
         super.onViewCreated(view, savedInstanceState);
-
-        MainActivity activity = (MainActivity)getActivity();
         activity.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                local = adapterView.getItemAtPosition(i).toString();
+                    local = adapterView.getSelectedItem().toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
