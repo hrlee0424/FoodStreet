@@ -5,10 +5,13 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
+import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.Object.ResponseObject;
 import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
+import hyerim.my.foodstreet.vpfragment.ViewPagerFragKorean;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -18,15 +21,18 @@ public class SearchTask extends AsyncTask {
     private final String category;
     public RecyclerView recyclerview;
     OkHttpClient client = new OkHttpClient();
+    public ArrayList<ItemObject> itemObjects;
     public ResponseObject responseObject;
     public boolean listnofi;
     public int startpage;
     public MainRecyclerAdapter mainRecyclerAdapter;
+    private ViewPagerFragKorean korean;
 
     public SearchTask(String category, RecyclerView recyclerView, int page) {
         this.category = category;
         this.recyclerview = recyclerView;
         this.startpage = page;
+//        this.mainRecyclerAdapter = adapter;
     }
 
     @Override
@@ -64,19 +70,19 @@ public class SearchTask extends AsyncTask {
         }
 
         return false;
-
     }
 
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-        if (mainRecyclerAdapter == null){
-            mainRecyclerAdapter = new MainRecyclerAdapter(responseObject.items);
-            mainRecyclerAdapter = new MainRecyclerAdapter(responseObject.items);
-      recyclerview.setAdapter(mainRecyclerAdapter);
-        }
+//        if (mainRecyclerAdapter == null){
+            itemObjects = responseObject.items;
+            mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
+            recyclerview.setAdapter(mainRecyclerAdapter);
         mainRecyclerAdapter.notifyDataSetChanged();
-        listnofi = false;
+
+//        korean.mnotifi = false;
+
     }
 }
 

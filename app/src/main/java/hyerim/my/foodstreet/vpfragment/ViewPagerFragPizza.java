@@ -70,6 +70,10 @@ public class ViewPagerFragPizza extends Fragment {
                     page += 1;
                     new SearchTask(localRead+"피자",pizza_recyclerview, page).execute();
                 }
+//                else if (!pizza_recyclerview.canScrollVertically(-1)){
+//                    page = 1;
+//                    new SearchTask(localRead+"피자",pizza_recyclerview, page).execute();
+//                }
             }
         });
     }

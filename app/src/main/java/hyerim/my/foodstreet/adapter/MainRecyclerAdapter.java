@@ -1,10 +1,7 @@
 package hyerim.my.foodstreet.adapter;
 
-import android.content.ClipData;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import hyerim.my.foodstreet.activity.MainDetailActivity;
 import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.R;
+import hyerim.my.foodstreet.vpfragment.ViewPagerFragKorean;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
     private String TAG = MainRecyclerAdapter.class.getSimpleName();
@@ -28,6 +26,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     public MainRecyclerAdapter(ArrayList<ItemObject> itemObjects) {
         arrayList = itemObjects;
+//        notifyDataSetChanged();
     }
 
 
@@ -36,7 +35,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_recyclerview_item,null);
         ViewHolder viewHodler = new ViewHolder(view);
-
+//        LayoutInflater inflater =context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         return viewHodler;
     }
 

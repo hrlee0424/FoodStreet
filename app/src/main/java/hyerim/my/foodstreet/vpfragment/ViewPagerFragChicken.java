@@ -72,6 +72,10 @@ public class ViewPagerFragChicken extends Fragment {
                     page += 1;
                     new SearchTask(localRead+"치킨",chicken_recyclerview, page).execute();
                 }
+//                else if (!chicken_recyclerview.canScrollVertically(-1)){
+//                    page = 1;
+//                    new SearchTask(localRead+"치킨",chicken_recyclerview, page).execute();
+//                }
             }
         });
     }

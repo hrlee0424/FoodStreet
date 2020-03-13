@@ -72,6 +72,10 @@ public class ViewPagerFragChinese extends Fragment {
                     page += 1;
                     new SearchTask(localRead+"중국음식점",chinese_recyclerview, page).execute();
                 }
+//                else if (!chinese_recyclerview.canScrollVertically(-1)){
+//                    page = 1;
+//                    new SearchTask(localRead+"중국음식점",chinese_recyclerview, page).execute();
+//                }
             }
         });
     }

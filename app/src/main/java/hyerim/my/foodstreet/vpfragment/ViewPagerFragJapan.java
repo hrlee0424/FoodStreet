@@ -73,6 +73,10 @@ public class ViewPagerFragJapan extends Fragment {
                     page += 1;
                     new SearchTask(localRead+"일식집",japan_recyclerview, page).execute();
                 }
+//                else if (!japan_recyclerview.canScrollVertically(-1)){
+//                    page = 1;
+//                    new SearchTask(localRead+"일식집",japan_recyclerview, page).execute();
+//                }
             }
         });
     }

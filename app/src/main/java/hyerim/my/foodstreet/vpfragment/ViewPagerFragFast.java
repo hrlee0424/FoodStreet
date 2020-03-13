@@ -70,6 +70,10 @@ public class ViewPagerFragFast extends Fragment {
                     page += 1;
                     new SearchTask(localRead+"햄버거",fast_recyclerview, page).execute();
                 }
+//                else if (!fast_recyclerview.canScrollVertically(-1)){
+//                    page = 1;
+//                    new SearchTask(localRead+"햄버거",fast_recyclerview, page).execute();
+//                }
             }
         });
     }

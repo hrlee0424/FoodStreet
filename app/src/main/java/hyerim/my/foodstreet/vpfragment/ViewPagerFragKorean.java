@@ -2,6 +2,7 @@ package hyerim.my.foodstreet.vpfragment;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -32,14 +33,16 @@ import java.util.ArrayList;
 
 public class ViewPagerFragKorean extends Fragment {
     private String TAG = ViewPagerFragKorean.class.getSimpleName();
-    private ArrayList<ItemObject> list;
     private View footerView;
     private LayoutInflater inflater;
     private int start = 1;
     private int display = 20;
     private ProgressDialog dialog;
+    private MainRecyclerAdapter adapter;
+    public ArrayList<ItemObject> itemObjects;
+    private SearchTask task;
     private String localRead;
-    public boolean listnofi;
+    public boolean mnotifi;
     private int page=1;
     private RecyclerView kor_recyclerview;
     @Override
@@ -54,6 +57,8 @@ public class ViewPagerFragKorean extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FoodListActivity foodListActivity = (FoodListActivity)getActivity();
         localRead = foodListActivity.local;
+
+        itemObjects = new ArrayList<>();
 
         kor_recyclerview = view.findViewById(R.id.kor_recyclerview);
 
@@ -85,9 +90,18 @@ public class ViewPagerFragKorean extends Fragment {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!kor_recyclerview.canScrollVertically(1)){
+//                        if (page < 1000 - 1 && itemObjects.size() >= 1){ //&& mnotifi == false
+//                            mnotifi = true;
+//                            page = 1000 - 1;
+//                        }
+//                    task.responseObject.items = adapter;
                         page += 1;
-                        new SearchTask(localRead+"한식집",kor_recyclerview, page).execute();
-                    }
+                    new SearchTask(localRead+"한식집",kor_recyclerview, page).execute();
+                }
+//                else if (!kor_recyclerview.canScrollVertically(-1)){
+//                    page = 1;
+//                    new SearchTask(localRead+"한식집",kor_recyclerview, page).execute();
+//                    }
                 }
         });
     }

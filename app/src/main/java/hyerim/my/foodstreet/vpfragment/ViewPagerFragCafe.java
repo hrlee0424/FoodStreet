@@ -73,6 +73,9 @@ public class ViewPagerFragCafe extends Fragment {
                 if (!cafe_recyclerview.canScrollVertically(1)){
                     page += 1;
                     new SearchTask(localRead+"카페",cafe_recyclerview, page).execute();
+                }else if (!cafe_recyclerview.canScrollVertically(-1)){
+                    page = 1;
+                    new SearchTask(localRead+"카페",cafe_recyclerview, page).execute();
                 }
             }
         });
