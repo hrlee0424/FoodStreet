@@ -1,7 +1,7 @@
 # FoodStreet 
-# Android java
-# 핫플레이스 장소에 따라 맛집 찾아주는 애플리케이션
-# Naver API, Naver Map, FireBase, MySQL 등
+Android java
+핫플레이스 장소에 따라 맛집 찾아주는 애플리케이션
+Naver API, Naver Map, FireBase, MySQL 등
 --------------------------------------------------------
 #주요 기능
 메인화면 상단에 플레이스 역 선택 후 메뉴를 클릭하면
