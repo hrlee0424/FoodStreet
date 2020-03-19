@@ -7,6 +7,9 @@
         <item name="colorPrimaryDark">@color/stateBar</item>
         <!-- 타이틀바-->
         <item name="colorPrimary" tools:ignore="DuplicateDefinition">@color/titleBar</item>
+
+        <item name="android:windowDisablePreview">true</item>
+
     </style>
 
 </resources>

@@ -33,7 +33,6 @@
                 app:tabIndicatorColor="@android:color/black"/>
         </LinearLayout>
 
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/frag_viewpager"
             android:layout_width="match_parent"

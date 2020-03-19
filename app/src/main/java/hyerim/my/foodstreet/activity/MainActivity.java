@@ -4,6 +4,7 @@ package hyerim.my.foodstreet.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import hyerim.my.foodstreet.R;
@@ -13,6 +14,7 @@ import hyerim.my.foodstreet.fragment.Main4Fragment;
 import hyerim.my.foodstreet.fragment.MainFragment;
 import hyerim.my.foodstreet.fragment.MainMypageFragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction fr_tr;
     private FirebaseAuth firebaseAuth;
     public Spinner spinner;
+    private TextView  menu_home,menu_star,menu_my_page;
+    private int maincolor, black;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +53,21 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "onCreate: MainActivity" + spinner.getSelectedItem().toString());
 
-        TextView menu_home = findViewById(R.id.menu_home);
-        TextView menu_star = findViewById(R.id.menu_star);
+        menu_home = findViewById(R.id.menu_home);
+        menu_star = findViewById(R.id.menu_star);
 //        TextView menu_map = findViewById(R.id.menu_map);
-        TextView menu_my_page = findViewById(R.id.menu_my_page);
+        menu_my_page = findViewById(R.id.menu_my_page);
+
+        maincolor = ContextCompat.getColor(getApplicationContext(),R.color.titleBar);
+        black = ContextCompat.getColor(getApplicationContext(),R.color.black);
 
         //실행 초기 홈 화면 생성.
         fr_tr = fr_mg.beginTransaction();
         fr_tr.add(R.id.fragment_main, new MainFragment());
         fr_tr.commit();
+        menu_home.setTextColor(maincolor);
+        menu_star.setTextColor(black);
+        menu_my_page.setTextColor(black);
 
         //하단 메뉴 바 클릭시 화면 전환.
         menu_home.setOnClickListener(Click);
@@ -69,19 +80,27 @@ public class MainActivity extends AppCompatActivity {
 
     //메뉴 바 클릭시 실행되는 메소드.
     private View.OnClickListener Click = new View.OnClickListener() {
+        @SuppressLint("ResourceAsColor")
         @Override
         public void onClick(View v) {
             fr_mg = getSupportFragmentManager();
             fr_tr = fr_mg.beginTransaction();
+
             switch (v.getId()) {
                 case R.id.menu_home:
                     fr_tr.replace(R.id.fragment_main, new MainFragment());
                     fr_tr.commit();
+                    menu_home.setTextColor(maincolor);
+                    menu_star.setTextColor(black);
+                    menu_my_page.setTextColor(black);
                     break;
                 case R.id.menu_star:
                     //                Navigation.findNavController(MainActivity.this,R.id.fragment_main).navigate(R.id.action_mainFragment_to_main2Fragment);
                     fr_tr.replace(R.id.fragment_main, new Main2Fragment());
                     fr_tr.commit();
+                    menu_home.setTextColor(black);
+                    menu_star.setTextColor(maincolor);
+                    menu_my_page.setTextColor(black);
                     break;
 //                case R.id.menu_map:
 //                    fr_tr.replace(R.id.fragment_main, new Main3Fragment());
@@ -94,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
                         fr_tr.replace(R.id.fragment_main, new Main4Fragment());
                     }
                     fr_tr.commit();
+                    menu_home.setTextColor(black);
+                    menu_star.setTextColor(black);
+                    menu_my_page.setTextColor(maincolor);
                     break;
             }
         }

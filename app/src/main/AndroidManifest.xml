@@ -14,19 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_meal_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DetailReviewActivity"></activity>
+        <activity android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.DetailReviewActivity" />
         <activity android:name=".activity.EditReviewActivity" />
         <activity android:name=".activity.MainDetailActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".auth.JoinActivity" />
         <activity android:name=".activity.FoodListActivity" />
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.MainActivity"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
