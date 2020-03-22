@@ -57,7 +57,7 @@ public class ViewPagerFragJapan extends Fragment {
         japan_recyclerview.setLayoutManager(linearLayoutManager);
 
         itemObjects = new ArrayList<>();
-        mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
+        mainRecyclerAdapter = new MainRecyclerAdapter(getContext(),itemObjects);
         japan_recyclerview.setAdapter(mainRecyclerAdapter);
 
         //리사이클러뷰 높이 여백 지정.

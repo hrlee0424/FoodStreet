@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.DetailReviewActivity" />
         <activity android:name=".activity.EditReviewActivity" />
         <activity android:name=".activity.MainDetailActivity" />
         <activity android:name=".auth.LoginActivity" />

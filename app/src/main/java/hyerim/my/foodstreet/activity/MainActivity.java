@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         fr_tr.commit();
         menu_home.setTextColor(maincolor);
         menu_star.setTextColor(black);
-        menu_my_page.setTextColor(black);
+//        menu_my_page.setTextColor(black);
 
         //하단 메뉴 바 클릭시 화면 전환.
         menu_home.setOnClickListener(Click);
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     fr_tr.commit();
                     menu_home.setTextColor(maincolor);
                     menu_star.setTextColor(black);
-                    menu_my_page.setTextColor(black);
+//                    menu_my_page.setTextColor(black);
                     break;
                 case R.id.menu_star:
                     //                Navigation.findNavController(MainActivity.this,R.id.fragment_main).navigate(R.id.action_mainFragment_to_main2Fragment);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     fr_tr.commit();
                     menu_home.setTextColor(black);
                     menu_star.setTextColor(maincolor);
-                    menu_my_page.setTextColor(black);
+//                    menu_my_page.setTextColor(black);
                     break;
                     /*-------------------------로그인 기능 제거----------------------
                 case R.id.menu_map:

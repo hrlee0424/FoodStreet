@@ -14,30 +14,26 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import hyerim.my.foodstreet.activity.MainDetailActivity;
 import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.R;
-import hyerim.my.foodstreet.vpfragment.ViewPagerFragKorean;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
-    private String TAG = MainRecyclerAdapter.class.getSimpleName();
     public ArrayList<ItemObject> arrayList;
     private Context context;
-
-    public MainRecyclerAdapter(ArrayList<ItemObject> itemObjects) {
+    public MainRecyclerAdapter(Context context, ArrayList<ItemObject> itemObjects) {
+        this.context = context;
         this.arrayList = itemObjects;
-//        this.context = context;
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_recyclerview_item,null,false);
-//        ViewHolder viewHodler = new ViewHolder(view);
-//        LayoutInflater inflater =context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View view = layoutInflater.from(parent.getContext()).inflate(R.layout.main_recyclerview_item,null,false);
+        View view = layoutInflater.inflate(R.layout.main_recyclerview_item,parent,false);
         return new ViewHolder(view);
     }
 
@@ -46,14 +42,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         ItemObject vo =arrayList.get(position);
 
         holder.title.setText(Html.fromHtml(vo.title));
-        holder.roadadress.setText(vo.roadAddress);
+        holder.roadadress = vo.roadAddress;
         holder.category.setText(vo.category);
-        holder.telephone.setText(vo.telephone);
+        holder.telephone = vo.telephone;
         holder.homepage = vo.link;
         holder.description = vo.description;
         holder.mapx = vo.mapx;
         holder.mapy = vo.mapy;
-        Log.i(TAG, "onBindViewHolder: " + vo.title);
     }
 
     public int getItemCount() {
@@ -64,18 +59,15 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         }
     }
         class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title,roadadress,category, telephone;
-        String description, homepage;
+        TextView title,category;
+        String description, homepage, telephone, roadadress;
         int mapx, mapy;
-        View.OnClickListener holderClick;
 
 
         public ViewHolder(@NonNull final View itemView){
             super(itemView);
             title  = itemView.findViewById(R.id.main_recyclerview_title);
-            roadadress  = itemView.findViewById(R.id.main_recyclerview_roadadress);
             category  = itemView.findViewById(R.id.main_recyclerview_category);
-            telephone = itemView.findViewById(R.id.main_recyclerview_telephone);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

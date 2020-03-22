@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import hyerim.my.foodstreet.vpfragment.ViewPagerFragAsian;
 import hyerim.my.foodstreet.vpfragment.ViewPagerFragCafe;
 import hyerim.my.foodstreet.vpfragment.ViewPagerFragChicken;
 import hyerim.my.foodstreet.vpfragment.ViewPagerFragChinese;
@@ -46,9 +45,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 6:
                 ViewPagerFragCafe viewPagerFragCafe = new ViewPagerFragCafe();
                 return viewPagerFragCafe;
-//            case 7:
-//                ViewPagerFragCafe viewPagerFragCafe = new ViewPagerFragCafe();
-//                return viewPagerFragCafe;
                 default:
                     return null;
         }

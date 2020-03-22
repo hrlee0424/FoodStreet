@@ -54,7 +54,7 @@ public class ViewPagerFragCafe extends Fragment {
         cafe_recyclerview.setLayoutManager(linearLayoutManager);
 
         itemObjects = new ArrayList<>();
-        mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
+        mainRecyclerAdapter = new MainRecyclerAdapter(getContext(),itemObjects);
         cafe_recyclerview.setAdapter(mainRecyclerAdapter);
 
         //리사이클러뷰 높이 여백 지정.

@@ -56,7 +56,7 @@ public class ViewPagerFragChinese extends Fragment {
         chinese_recyclerview.setLayoutManager(linearLayoutManager);
 
         itemObjects = new ArrayList<>();
-        mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
+        mainRecyclerAdapter = new MainRecyclerAdapter(getContext(),itemObjects);
         chinese_recyclerview.setAdapter(mainRecyclerAdapter);
 
         //리사이클러뷰 높이 여백 지정.

@@ -53,7 +53,7 @@ public class ViewPagerFragPizza extends Fragment {
         pizza_recyclerview.setLayoutManager(linearLayoutManager);
 
         itemObjects = new ArrayList<>();
-        mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
+        mainRecyclerAdapter = new MainRecyclerAdapter(getContext(),itemObjects);
         pizza_recyclerview.setAdapter(mainRecyclerAdapter);
 
         //리사이클러뷰 높이 여백 지정.
