@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 
 public class ViewPagerFragCafe extends Fragment {
-    private String TAG = ViewPagerFragCafe.class.getSimpleName();
     private RecyclerView cafe_recyclerview;
     private RecyclerViewDecoration spaceDecoration;
     private String localRead;

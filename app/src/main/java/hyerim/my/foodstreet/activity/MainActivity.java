@@ -26,10 +26,8 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    private String TAG = MainActivity.class.getSimpleName();
     private FragmentManager fr_mg  = getSupportFragmentManager();
     private FragmentTransaction fr_tr;
-    private FirebaseAuth firebaseAuth;
     public Spinner spinner;
     private TextView  menu_home,menu_star,menu_my_page;
     private int maincolor, black;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -50,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, localitem);
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
-
-        Log.i(TAG, "onCreate: MainActivity" + spinner.getSelectedItem().toString());
 
         menu_home = findViewById(R.id.menu_home);
         menu_star = findViewById(R.id.menu_star);

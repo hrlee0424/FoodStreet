@@ -24,14 +24,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 
 public class EditReviewActivity extends AppCompatActivity {
-    private String TAG = EditReviewActivity.class.getSimpleName();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String name;
     private RatingBar ratingBar;
     private String rating;
     private EditText review;
     private HashMap<String,Object> datamap = new HashMap<>();
-    private RecyclerView review_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,6 @@ public class EditReviewActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
         ratingBar = findViewById(R.id.ratingBar);
         review = findViewById(R.id.review_edit);
-//        review_list = findViewById(R.id.detail_reviewlist);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
