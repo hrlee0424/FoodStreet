@@ -1,5 +1,6 @@
 package hyerim.my.foodstreet.asynctask;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,24 +24,22 @@ public class SearchTask extends AsyncTask {
     OkHttpClient client = new OkHttpClient();
     public ArrayList<ItemObject> itemObjects;
     public ResponseObject responseObject;
-    public boolean listnofi;
     public int startpage;
     public MainRecyclerAdapter mainRecyclerAdapter;
     private ViewPagerFragKorean korean;
 
-    public SearchTask(String category, RecyclerView recyclerView, int page) {
+    public SearchTask(String category, int page, MainRecyclerAdapter adapter, ArrayList<ItemObject> itemObject) {
         this.category = category;
-        this.recyclerview = recyclerView;
         this.startpage = page;
-//        this.mainRecyclerAdapter = adapter;
+        this.mainRecyclerAdapter = adapter;
+        this.itemObjects = itemObject;
     }
 
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
+//            itemObjects = new ArrayList<>();
             String text = category;
-//            startpage = 2;
-            Log.i(TAG, "onScrollStateChanged: " + startpage);
             int display = 20;
             String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&start=" + startpage + "&display=" + display;
 
@@ -63,26 +62,22 @@ public class SearchTask extends AsyncTask {
                 e.printStackTrace();
             }
             responseObject = new Gson().fromJson(result, ResponseObject.class);
-
+//            itemObjects = responseObject.items;
+            for (int i=0; i<responseObject.items.size(); i++){
+                itemObjects.add(responseObject.items.get(i));
+            }
             return true;
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return false;
     }
 
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-//        if (mainRecyclerAdapter == null){
-            itemObjects = responseObject.items;
-            mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
-            recyclerview.setAdapter(mainRecyclerAdapter);
-        mainRecyclerAdapter.notifyDataSetChanged();
-
-//        korean.mnotifi = false;
-
-    }
+            mainRecyclerAdapter.notifyDataSetChanged();
+        }
 }
+
 

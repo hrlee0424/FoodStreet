@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import hyerim.my.foodstreet.Object.ItemObject;
 import hyerim.my.foodstreet.activity.FoodListActivity;
 import hyerim.my.foodstreet.R;
+import hyerim.my.foodstreet.adapter.MainRecyclerAdapter;
 import hyerim.my.foodstreet.util.RecyclerViewDecoration;
 import hyerim.my.foodstreet.asynctask.SearchTask;
 
@@ -21,12 +23,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 
 public class ViewPagerFragChinese extends Fragment {
     private RecyclerViewDecoration spaceDecoration;
     private RecyclerView chinese_recyclerview;
     private String localRead;
     private int page=1;
+    public ArrayList<ItemObject> itemObjects;
+    private MainRecyclerAdapter mainRecyclerAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +55,10 @@ public class ViewPagerFragChinese extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         chinese_recyclerview.setLayoutManager(linearLayoutManager);
 
+        itemObjects = new ArrayList<>();
+        mainRecyclerAdapter = new MainRecyclerAdapter(itemObjects);
+        chinese_recyclerview.setAdapter(mainRecyclerAdapter);
+
         //리사이클러뷰 높이 여백 지정.
         spaceDecoration = new RecyclerViewDecoration(30);
         chinese_recyclerview.addItemDecoration(spaceDecoration);
@@ -60,9 +71,9 @@ public class ViewPagerFragChinese extends Fragment {
         //인터넷 권한이 있을 떄만 asyndTask 실행.
         int permissionResult= ContextCompat.checkSelfPermission(getContext(), Manifest.permission.INTERNET); //현재 권한을 갖고 있는지 확인 후
         if(permissionResult == PackageManager.PERMISSION_GRANTED){  //권한이 있으면
-            new SearchTask(localRead + "중국음식점",chinese_recyclerview, page).execute();
+            new SearchTask(localRead + "중국음식점", page, mainRecyclerAdapter, itemObjects).execute();
         }else if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)){  //권한 요청화면을 띄워줌
-            new SearchTask(localRead + "중국음식점",chinese_recyclerview, page).execute();    //권한 허락이 되었을 때 실행
+            new SearchTask(localRead + "중국음식점", page, mainRecyclerAdapter, itemObjects).execute();    //권한 허락이 되었을 때 실행
         }
         chinese_recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -70,7 +81,7 @@ public class ViewPagerFragChinese extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!chinese_recyclerview.canScrollVertically(1)){
                     page += 1;
-                    new SearchTask(localRead+"중국음식점",chinese_recyclerview, page).execute();
+                    new SearchTask(localRead+"중국음식점", page, mainRecyclerAdapter, itemObjects).execute();
                 }
 //                else if (!chinese_recyclerview.canScrollVertically(-1)){
 //                    page = 1;

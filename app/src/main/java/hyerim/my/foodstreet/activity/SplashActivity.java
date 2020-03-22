@@ -21,7 +21,6 @@ public class SplashActivity extends AppCompatActivity {
         final TextView textView = findViewById(R.id.textView3);
 
 
-
         animtext = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.textsplash);
         textView.setAnimation(animtext);
         animimage = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.imageplash);

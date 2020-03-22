@@ -3,6 +3,7 @@ package hyerim.my.foodstreet.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import hyerim.my.foodstreet.activity.MainDetailActivity;
 import hyerim.my.foodstreet.Object.ItemObject;
@@ -25,31 +27,33 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     private Context context;
 
     public MainRecyclerAdapter(ArrayList<ItemObject> itemObjects) {
-        arrayList = itemObjects;
-//        notifyDataSetChanged();
+        this.arrayList = itemObjects;
+//        this.context = context;
     }
 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_recyclerview_item,null);
-        ViewHolder viewHodler = new ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_recyclerview_item,null,false);
+//        ViewHolder viewHodler = new ViewHolder(view);
 //        LayoutInflater inflater =context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        return viewHodler;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainRecyclerAdapter.ViewHolder holder, int position) {
+        ItemObject vo =arrayList.get(position);
 
-        holder.title.setText(Html.fromHtml(arrayList.get(position).title));
-        holder.roadadress.setText(arrayList.get(position).roadAddress);
-        holder.category.setText(arrayList.get(position).category);
-        holder.telephone.setText(arrayList.get(position).telephone);
-        holder.homepage = arrayList.get(position).link;
-        holder.description = arrayList.get(position).description;
-        holder.mapx = arrayList.get(position).mapx;
-        holder.mapy = arrayList.get(position).mapy;
+        holder.title.setText(Html.fromHtml(vo.title));
+        holder.roadadress.setText(vo.roadAddress);
+        holder.category.setText(vo.category);
+        holder.telephone.setText(vo.telephone);
+        holder.homepage = vo.link;
+        holder.description = vo.description;
+        holder.mapx = vo.mapx;
+        holder.mapy = vo.mapy;
+        Log.i(TAG, "onBindViewHolder: " + vo.title);
     }
 
     public int getItemCount() {
