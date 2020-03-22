@@ -38,7 +38,6 @@ public class SearchTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
-//            itemObjects = new ArrayList<>();
             String text = category;
             int display = 20;
             String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&start=" + startpage + "&display=" + display;

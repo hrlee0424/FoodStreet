@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         menu_home = findViewById(R.id.menu_home);
         menu_star = findViewById(R.id.menu_star);
 //        TextView menu_map = findViewById(R.id.menu_map);
-        menu_my_page = findViewById(R.id.menu_my_page);
+//        menu_my_page = findViewById(R.id.menu_my_page);
 
         maincolor = ContextCompat.getColor(getApplicationContext(),R.color.titleBar);
         black = ContextCompat.getColor(getApplicationContext(),R.color.black);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         menu_home.setOnClickListener(Click);
         menu_star.setOnClickListener(Click);
 //        menu_map.setOnClickListener(Click);
-        menu_my_page.setOnClickListener(Click);
+//        menu_my_page.setOnClickListener(Click);
 
     }
 
@@ -102,10 +102,11 @@ public class MainActivity extends AppCompatActivity {
                     menu_star.setTextColor(maincolor);
                     menu_my_page.setTextColor(black);
                     break;
-//                case R.id.menu_map:
-//                    fr_tr.replace(R.id.fragment_main, new Main3Fragment());
-//                    fr_tr.commit();
-//                    break;
+                    /*-------------------------로그인 기능 제거----------------------
+                case R.id.menu_map:
+                    fr_tr.replace(R.id.fragment_main, new Main3Fragment());
+                    fr_tr.commit();
+                    break;
                 case R.id.menu_my_page:
                     if (firebaseAuth.getCurrentUser() != null){ //이전 가입한 아이디가 있으면
                         fr_tr.replace(R.id.fragment_main, new MainMypageFragment());
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     menu_star.setTextColor(black);
                     menu_my_page.setTextColor(maincolor);
                     break;
+                   */
             }
         }
     };
