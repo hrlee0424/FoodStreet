@@ -1,6 +1,7 @@
 package hyerim.my.foodstreet.activity;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,6 +16,8 @@ import hyerim.my.foodstreet.fragment.MainFragment;
 import hyerim.my.foodstreet.fragment.MainMypageFragment;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,11 +34,14 @@ public class MainActivity extends AppCompatActivity {
     public Spinner spinner;
     private TextView  menu_home,menu_star,menu_my_page;
     private int maincolor, black;
+    private ConnectivityManager manager;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        checkInternetState();   //인터넷 연결 확인
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -73,6 +79,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //인터넷 연결 확인 메소드
+    private void checkInternetState() {
+        manager = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
+        assert manager != null;
+        if (!(manager.getActiveNetworkInfo() != null && manager.getActiveNetworkInfo().isConnected())){
+            new AlertDialog.Builder(this)
+                    .setMessage("인터넷과 연결이 되어있지 않습니다.")
+                    .setCancelable(false)
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finishAffinity();
+                        }
+                    }).show();
+        }
+    }
 
     //메뉴 바 클릭시 실행되는 메소드.
     private View.OnClickListener Click = new View.OnClickListener() {

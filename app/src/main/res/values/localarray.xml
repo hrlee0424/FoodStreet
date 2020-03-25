@@ -3,16 +3,23 @@
 
     <string-array name="local">
         <item>강남역</item>
-        <item>교대역</item>
-        <item>삼성역</item>
-        <item>잠실역</item>
-        <item>선릉역</item>
-        <item>홍대입구역</item>
         <item>구로역</item>
-        <item>영등포역</item>
+        <item>교대역</item>
+        <item>건대입구역</item>
+        <item>사당역</item>
+        <item>삼성역</item>
+        <item>선릉역</item>
         <item>신도림역</item>
+        <item>신림역</item>
+        <item>시청역</item>
         <item>신촌역</item>
+        <item>영등포역</item>
         <item>이대역</item>
+        <item>잠실역</item>
+        <item>종로3가역</item>
+        <item>청량리역</item>
+        <item>합정역</item>
+        <item>홍대입구역</item>
     </string-array>
 
 
