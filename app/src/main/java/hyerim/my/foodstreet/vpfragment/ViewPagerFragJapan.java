@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -81,8 +82,12 @@ public class ViewPagerFragJapan extends Fragment {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!japan_recyclerview.canScrollVertically(1)){
-                    page += 1;
-                    new SearchTask(localRead+"일식집", page, mainRecyclerAdapter, itemObjects).execute();
+                    if (page >= 1000){
+                        Toast.makeText(getContext(),"더이상 불러올 정보가 없습니다.",Toast.LENGTH_LONG).show();
+                    }else {
+                        page += 20;
+                        new SearchTask(localRead+"일식집", page, mainRecyclerAdapter, itemObjects).execute();
+                    }
                 }
 //                else if (!japan_recyclerview.canScrollVertically(-1)){
 //                    page = 1;

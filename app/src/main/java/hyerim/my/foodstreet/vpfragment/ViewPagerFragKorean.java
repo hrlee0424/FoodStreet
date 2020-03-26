@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -86,9 +87,14 @@ public class ViewPagerFragKorean extends Fragment {
                 int lastposition = linearLayoutManager.findLastVisibleItemPosition();
                 Log.i(TAG, "onScrolled: " + lastposition);
                 if (!kor_recyclerview.canScrollVertically(1)) {
-                        update = true;
-                        page += 20;
-                        new SearchTask(localRead + "한식집", page, mainRecyclerAdapter, itemObjects).execute();
+                        if (page >= 1000){
+                            Toast.makeText(getContext(),"더이상 불러올 정보가 없습니다.",Toast.LENGTH_LONG).show();
+                        }else {
+//                            update = true;
+                            page += 20;
+                            new SearchTask(localRead + "한식집", page, mainRecyclerAdapter, itemObjects).execute();
+
+                        }
                 }
             }
         });
